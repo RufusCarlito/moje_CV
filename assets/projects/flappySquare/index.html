@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jumping Rectangle Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <section class="game-panel">
+      <div class="game-head">
+        <div>
+          <p>Jumping rectangle game</p>
+          <h1>Flappy Square</h1>
+        </div>
+        <strong id="score">0</strong>
+      </div>
+      <canvas id="game" width="720" height="420" aria-label="Gra Flappy Square"></canvas>
+      <div class="game-actions">
+        <button id="start" type="button">Start</button>
+        <button id="reset" type="button">Reset</button>
+      </div>
+      <p class="hint">Kliknij, dotknij ekran albo naciśnij spację, żeby podbić kwadrat.</p>
+    </section>
+  </main>
+  <script src="gameEngine.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

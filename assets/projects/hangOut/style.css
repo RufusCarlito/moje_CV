@@ -1,0 +1,158 @@
+body
+{
+	background-color: #000000;
+	color: lightgrey;
+	font-size: clamp(18px, 4vw, 28px);
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	font-weight: 700;
+	margin: 0;
+	padding: 24px;
+}
+
+#container
+{
+	width: min(1200px, 100%);
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#board
+{
+	width: 100%;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	text-align: center;
+	font-size: clamp(30px, 8vw, 52px);
+	overflow-wrap: anywhere;
+}
+
+#gallows
+{
+	float: left;
+	text-align: center;
+	width: 50%;
+	min-height: 280px;
+}
+
+#gallows img {
+	max-width: 100%;
+	height: auto;
+}
+
+#alphabet
+{
+	float: left;
+	text-align: center;
+	width: 50%;
+	min-height: 280px;
+}
+
+#hangman-actions
+{
+	clear: both;
+	padding-top: 28px;
+	text-align: center;
+}
+
+.letter
+{
+	width: 35px;
+	height: 35px;
+	text-align: center;
+	padding: 5px;
+	margin: 5px;
+	border: 3px solid gray;
+	background: transparent;
+	color: lightgrey;
+	float: left;
+	cursor: pointer;
+	border-radius: 15px;
+	font: inherit;
+	line-height: 1;
+}
+
+.letter:hover:not(:disabled)
+{
+	background-color: #222222;
+	color: white;
+	border: 3px solid white;
+}
+
+.letter:disabled
+{
+	cursor: default;
+}
+
+.letter--good
+{
+	background: #003300;
+	color: #00C000;
+	border-color: #00C000;
+}
+
+.letter--bad
+{
+	background: #330000;
+	color: #C00000;
+	border-color: #C00000;
+}
+
+.letter-break
+{
+	clear: both;
+}
+
+.reset
+{
+	min-height: 44px;
+	padding: 0 18px;
+	border: 2px solid green;
+	border-radius: 8px;
+	background: transparent;
+	color:green;
+	cursor: pointer;
+	font: inherit;
+	font-size: clamp(22px, 5vw, 36px);
+}
+
+@media (max-width: 760px) {
+	body {
+		padding: 16px;
+	}
+
+	#board {
+		margin-block: 24px;
+	}
+
+	#gallows,
+	#alphabet {
+		float: none;
+		width: 100%;
+		min-height: 0;
+	}
+
+	#alphabet {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin-top: 18px;
+	}
+
+	.letter {
+		width: 32px;
+		height: 32px;
+		padding: 4px;
+		margin: 4px;
+		border-radius: 10px;
+	}
+
+	.letter-break {
+		display: none;
+	}
+}
+
+.reset:hover
+{
+	background: #003300;
+	color:white;
+}
