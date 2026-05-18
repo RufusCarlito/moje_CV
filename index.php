@@ -19,6 +19,11 @@ $focusItems = [
     'Podstawy backendu: PHP, Python, MySQL i praca z Magento 2.',
     'Swoboda w narzędziach zespołowych: Git, Jira, Docker, Postman.',
 ];
+$nowItems = [
+    'Najbardziej interesują mnie projekty webowe, w których mogę łączyć frontend z PHP i bazami danych.',
+    'Szukam zadań, które wymagają myślenia o użytkowniku, czytelnym kodzie i praktycznym dowożeniu zmian.',
+    'Chcę rozwijać się bliżej zespołów produktowych, gdzie analiza wymagań szybko przechodzi w działający interfejs.',
+];
 
 $projects = [
     [
@@ -88,34 +93,17 @@ $jobs = [
         ],
     ],
     [
-        'role' => 'Główny inżynier',
+        'role' => 'Stażysta / specjalista elektronik',
         'company' => 'Blinkee.city',
-        'period' => 'January 2021 - June 2021',
+        'period' => '08.2017 - 08.2019',
         'items' => [
-            'Testowanie rozwiązań, porządkowanie wniosków i współpraca z zespołem technicznym.',
-            'Kontakt z kontrahentami i praca po angielsku w praktycznych sytuacjach.',
-        ],
-    ],
-    [
-        'role' => 'Specjalista elektronik',
-        'company' => 'Blinkee.city',
-        'period' => 'Oct 2019 - Dec 2020',
-        'items' => [
-            'Diagnoza urządzeń, dokładność w pracy technicznej i raportowanie postępów.',
-        ],
-    ],
-    [
-        'role' => 'Młodszy specjalista elektronik',
-        'company' => 'Blinkee.city',
-        'period' => 'Jun 2019 - Sep 2019',
-        'items' => [
-            'Wsparcie techniczne i nauka pracy w uporządkowanym procesie.',
+            'Projektowanie funkcjonalności elektronicznych dla pojazdów EV.',
+            'Dokumentacja techniczno-użytkowa i wsparcie rozwiązań dla bezpieczeństwa użytkownika.',
         ],
     ],
 ];
 
 $education = [
-    ['degree' => 'Informatyka, inżynier', 'school' => 'Polsko-Japońska Akademia Technik Komputerowych', 'period' => '10.2025 - 06.2029'],
     ['degree' => 'Filozofia', 'school' => 'Uniwersytet Warszawski', 'period' => 'October 2019 - Jul 2022'],
     ['degree' => 'Licencjat', 'school' => 'Akademia Sztuki Wojennej', 'period' => 'October 2016 - Jul 2019'],
     ['degree' => 'Lotnictwo i kosmonautyka', 'school' => 'Wojskowa Akademia Techniczna', 'period' => 'October 2015 - Jul 2016'],
@@ -135,6 +123,11 @@ function e(string $value): string
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="CV i portfolio: <?= e($profile['name']); ?>, <?= e($profile['role']); ?>">
+    <meta property="og:title" content="<?= e($profile['name']); ?> | <?= e($profile['role']); ?>">
+    <meta property="og:description" content="<?= e($profile['summary']); ?>">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/img/profile.png">
+    <meta name="twitter:card" content="summary_large_image">
     <title><?= e($profile['name']); ?> | CV</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -191,6 +184,7 @@ function e(string $value): string
                 <div class="hero__actions" aria-label="Główne akcje">
                     <?php if ($downloadPath): ?>
                         <a class="button button--primary" href="<?= e($downloadPath); ?>" download data-i18n="actions.download">Pobierz CV</a>
+                        <button class="button button--ghost" type="button" data-print-pdf="<?= e($downloadPath); ?>" data-i18n="actions.print">Drukuj CV</button>
                     <?php else: ?>
                         <span class="button button--disabled" title="Dodaj plik PDF/DOC/DOCX do assets/downloads" data-i18n="actions.download">Pobierz CV</span>
                     <?php endif; ?>
@@ -257,6 +251,18 @@ function e(string $value): string
             </aside>
 
             <div class="content">
+                <section class="section" aria-labelledby="now-title">
+                    <div class="section__head">
+                        <p class="eyebrow" data-i18n="sections.nowEyebrow">Aktualnie</p>
+                        <h2 id="now-title" data-i18n="sections.now">Czego szukam w kodzie</h2>
+                    </div>
+                    <ul class="focus-list">
+                        <?php foreach ($nowItems as $item): ?>
+                            <li data-i18n-list="now"><?= e($item); ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </section>
+
                 <section class="section" aria-labelledby="projects-title">
                     <div class="section__head">
                         <p class="eyebrow">Portfolio</p>

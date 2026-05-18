@@ -6,6 +6,7 @@ const translations = {
     "profile.summary": "Tworzę proste, responsywne interfejsy i lubię, gdy kod jest czytelny także po kilku tygodniach. Rozwijam się w PHP, JavaScript i pracy z realnymi narzędziami webowymi.",
     "profile.location": "Warszawa, Polska",
     "actions.download": "Pobierz CV",
+    "actions.print": "Drukuj CV",
     "actions.viewProject": "Zobacz projekt",
     "sections.contact": "Kontakt",
     "sections.tech": "Umiejętności techniczne",
@@ -18,6 +19,8 @@ const translations = {
     "sections.education": "Edukacja",
     "sections.focusEyebrow": "W skrócie",
     "sections.focus": "Jak pracuję z kodem",
+    "sections.nowEyebrow": "Aktualnie",
+    "sections.now": "Czego szukam w kodzie",
     "contact.phone": "Telefon",
     "contact.location": "Lokalizacja",
   },
@@ -26,6 +29,7 @@ const translations = {
     "profile.summary": "I build simple, responsive interfaces and I like code that still reads clearly weeks later. I keep growing in PHP, JavaScript and practical web tooling.",
     "profile.location": "Warsaw, Poland",
     "actions.download": "Download CV",
+    "actions.print": "Print CV",
     "actions.viewProject": "View project",
     "sections.contact": "Contact",
     "sections.tech": "Technical skills",
@@ -38,6 +42,8 @@ const translations = {
     "sections.education": "Education",
     "sections.focusEyebrow": "In short",
     "sections.focus": "How I work with code",
+    "sections.nowEyebrow": "Now",
+    "sections.now": "What I look for in code",
     "contact.phone": "Phone",
     "contact.location": "Location",
   },
@@ -46,6 +52,7 @@ const translations = {
     "profile.summary": "Ich erstelle einfache, responsive Oberflächen und mag Code, der auch nach Wochen gut lesbar bleibt. Ich entwickle mich weiter in PHP, JavaScript und praktischen Web-Tools.",
     "profile.location": "Warschau, Polen",
     "actions.download": "Lebenslauf herunterladen",
+    "actions.print": "Lebenslauf drucken",
     "actions.viewProject": "Projekt ansehen",
     "sections.contact": "Kontakt",
     "sections.tech": "Technische Fähigkeiten",
@@ -58,6 +65,8 @@ const translations = {
     "sections.education": "Ausbildung",
     "sections.focusEyebrow": "Kurz gesagt",
     "sections.focus": "Wie ich mit Code arbeite",
+    "sections.nowEyebrow": "Aktuell",
+    "sections.now": "Was ich im Code suche",
     "contact.phone": "Telefon",
     "contact.location": "Standort",
   },
@@ -89,6 +98,23 @@ const listTranslations = {
       "Frontend mit Fokus auf klares HTML, CSS und JavaScript.",
       "Backend-Grundlagen: PHP, Python, MySQL und Arbeit mit Magento 2.",
       "Sicher im Umgang mit Team-Tools: Git, Jira, Docker, Postman.",
+    ],
+  },
+  now: {
+    pl: [
+      "Najbardziej interesują mnie projekty webowe, w których mogę łączyć frontend z PHP i bazami danych.",
+      "Szukam zadań, które wymagają myślenia o użytkowniku, czytelnym kodzie i praktycznym dowożeniu zmian.",
+      "Chcę rozwijać się bliżej zespołów produktowych, gdzie analiza wymagań szybko przechodzi w działający interfejs.",
+    ],
+    en: [
+      "I am most interested in web projects where I can combine frontend work with PHP and databases.",
+      "I look for tasks that require user thinking, readable code and practical delivery.",
+      "I want to grow closer to product teams, where requirements quickly become working interfaces.",
+    ],
+    de: [
+      "Am meisten interessieren mich Webprojekte, in denen ich Frontend-Arbeit mit PHP und Datenbanken verbinden kann.",
+      "Ich suche Aufgaben, die Nutzerdenken, lesbaren Code und praktische Umsetzung verlangen.",
+      "Ich möchte näher an Produktteams arbeiten, wo Anforderungen schnell zu funktionierenden Oberflächen werden.",
     ],
   },
 };
@@ -152,21 +178,13 @@ const jobTranslations = {
     en: "Designing, implementing and testing changes in web applications.",
     de: "Design, Implementierung und Test von Änderungen in Webanwendungen.",
   },
-  "Testowanie rozwiązań, porządkowanie wniosków i współpraca z zespołem technicznym.": {
-    en: "Testing solutions, organizing findings and working with the technical team.",
-    de: "Lösungen testen, Ergebnisse strukturieren und mit dem technischen Team arbeiten.",
+  "Projektowanie funkcjonalności elektronicznych dla pojazdów EV.": {
+    en: "Designing electronic functionality for EV vehicles.",
+    de: "Entwicklung elektronischer Funktionen für EV-Fahrzeuge.",
   },
-  "Kontakt z kontrahentami i praca po angielsku w praktycznych sytuacjach.": {
-    en: "Contact with contractors and practical work in English.",
-    de: "Kontakt mit Auftragnehmern und praktische Arbeit auf Englisch.",
-  },
-  "Diagnoza urządzeń, dokładność w pracy technicznej i raportowanie postępów.": {
-    en: "Device diagnostics, precision in technical work and progress reporting.",
-    de: "Gerätediagnose, Präzision in technischer Arbeit und Fortschrittsberichte.",
-  },
-  "Wsparcie techniczne i nauka pracy w uporządkowanym procesie.": {
-    en: "Technical support and learning to work in a structured process.",
-    de: "Technische Unterstützung und Arbeit in einem strukturierten Prozess lernen.",
+  "Dokumentacja techniczno-użytkowa i wsparcie rozwiązań dla bezpieczeństwa użytkownika.": {
+    en: "Technical and user documentation plus support for user-safety solutions.",
+    de: "Technische und nutzerbezogene Dokumentation sowie Unterstützung von Lösungen für die Nutzersicherheit.",
   },
 };
 
@@ -191,26 +209,14 @@ const jobRoleTranslations = {
     en: "Fullstack developer",
     de: "Fullstack-Entwickler",
   },
-  "Główny inżynier": {
-    en: "Main engineer",
-    de: "Leitender Ingenieur",
-  },
-  "Specjalista elektronik": {
-    en: "Electronics specialist",
-    de: "Elektronikspezialist",
-  },
-  "Młodszy specjalista elektronik": {
-    en: "Junior electronics specialist",
-    de: "Junior-Elektronikspezialist",
+  "Stażysta / specjalista elektronik": {
+    en: "Intern / electronics specialist",
+    de: "Praktikant / Elektronikspezialist",
   },
 };
 
 const educationTranslations = {
   degree: {
-    "Informatyka, inżynier": {
-      en: "Computer science, engineering degree",
-      de: "Informatik, Ingenieurstudium",
-    },
     "Filozofia": {
       en: "Philosophy",
       de: "Philosophie",
@@ -225,10 +231,6 @@ const educationTranslations = {
     },
   },
   school: {
-    "Polsko-Japońska Akademia Technik Komputerowych": {
-      en: "Polish-Japanese Academy of Information Technology",
-      de: "Polnisch-Japanische Akademie für Informationstechnologie",
-    },
     "Uniwersytet Warszawski": {
       en: "University of Warsaw",
       de: "Universität Warschau",
@@ -316,6 +318,24 @@ deviceViewButtons.forEach((button) => {
 });
 
 setDeviceView("desktop");
+
+document.querySelectorAll("[data-print-pdf]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const frame = document.createElement("iframe");
+    frame.src = button.dataset.printPdf;
+    frame.style.position = "fixed";
+    frame.style.right = "0";
+    frame.style.bottom = "0";
+    frame.style.width = "0";
+    frame.style.height = "0";
+    frame.style.border = "0";
+    frame.onload = () => {
+      frame.contentWindow?.focus();
+      frame.contentWindow?.print();
+    };
+    document.body.append(frame);
+  });
+});
 
 const modal = document.querySelector("[data-project-modal]");
 const modalFrame = document.querySelector("[data-project-frame]");
