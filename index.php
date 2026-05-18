@@ -292,7 +292,7 @@ function e(string $value): string
                     </div>
                     <div class="timeline">
                         <?php foreach ($jobs as $index => $job): ?>
-                            <article class="timeline-item<?= $index >= 4 ? ' timeline-item--older' : ''; ?>"<?= $index >= 4 ? ' data-experience-older hidden' : ''; ?>>
+                            <article class="timeline-item<?= $index >= 3 ? ' timeline-item--older' : ''; ?>"<?= $index >= 3 ? ' data-experience-older hidden' : ''; ?>>
                                 <div>
                                     <p class="timeline-item__period"><?= e($job['period']); ?></p>
                                     <h3><span data-job-role="<?= e($job['role']); ?>"><?= e($job['role']); ?></span> <span><?= e($job['company']); ?></span></h3>
