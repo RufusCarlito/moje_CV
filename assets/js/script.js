@@ -21,6 +21,8 @@ const translations = {
     "sections.focus": "Jak pracuję z kodem",
     "sections.nowEyebrow": "Aktualnie",
     "sections.now": "Czego szukam w kodzie",
+    "experience.showOlder": "Pokaż starsze doświadczenie",
+    "experience.hideOlder": "Ukryj starsze doświadczenie",
     "contact.phone": "Telefon",
     "contact.location": "Lokalizacja",
   },
@@ -44,6 +46,8 @@ const translations = {
     "sections.focus": "How I work with code",
     "sections.nowEyebrow": "Now",
     "sections.now": "What I look for in code",
+    "experience.showOlder": "Show older experience",
+    "experience.hideOlder": "Hide older experience",
     "contact.phone": "Phone",
     "contact.location": "Location",
   },
@@ -67,6 +71,8 @@ const translations = {
     "sections.focus": "Wie ich mit Code arbeite",
     "sections.nowEyebrow": "Aktuell",
     "sections.now": "Was ich im Code suche",
+    "experience.showOlder": "Ältere Erfahrung anzeigen",
+    "experience.hideOlder": "Ältere Erfahrung ausblenden",
     "contact.phone": "Telefon",
     "contact.location": "Standort",
   },
@@ -247,6 +253,7 @@ const educationTranslations = {
 };
 
 function applyLanguage(language) {
+  currentLanguage = language;
   const dictionary = translations[language] || translations.pl;
 
   document.documentElement.lang = language;
@@ -295,6 +302,8 @@ function applyLanguage(language) {
   document.querySelectorAll("[data-lang]").forEach((button) => {
     button.classList.toggle("is-active", button.dataset.lang === language);
   });
+
+  updateExperienceToggleText();
 }
 
 document.querySelectorAll("[data-lang]").forEach((button) => {
@@ -318,6 +327,31 @@ deviceViewButtons.forEach((button) => {
 });
 
 setDeviceView("desktop");
+
+const experienceToggle = document.querySelector("[data-experience-toggle]");
+const olderExperienceItems = document.querySelectorAll("[data-experience-older]");
+let currentLanguage = "pl";
+
+function updateExperienceToggleText() {
+  if (!experienceToggle) {
+    return;
+  }
+
+  const expanded = experienceToggle.getAttribute("aria-expanded") === "true";
+  const key = expanded ? "experience.hideOlder" : "experience.showOlder";
+  experienceToggle.textContent = translations[currentLanguage]?.[key] || translations.pl[key];
+}
+
+if (experienceToggle) {
+  experienceToggle.addEventListener("click", () => {
+    const expanded = experienceToggle.getAttribute("aria-expanded") === "true";
+    experienceToggle.setAttribute("aria-expanded", String(!expanded));
+    olderExperienceItems.forEach((item) => {
+      item.hidden = expanded;
+    });
+    updateExperienceToggleText();
+  });
+}
 
 document.querySelectorAll("[data-print-pdf]").forEach((button) => {
   button.addEventListener("click", () => {

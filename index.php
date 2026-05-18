@@ -291,8 +291,8 @@ function e(string $value): string
                         <h2 id="experience-title" data-i18n="sections.experience">Doświadczenie</h2>
                     </div>
                     <div class="timeline">
-                        <?php foreach ($jobs as $job): ?>
-                            <article class="timeline-item">
+                        <?php foreach ($jobs as $index => $job): ?>
+                            <article class="timeline-item<?= $index >= 4 ? ' timeline-item--older' : ''; ?>"<?= $index >= 4 ? ' data-experience-older hidden' : ''; ?>>
                                 <div>
                                     <p class="timeline-item__period"><?= e($job['period']); ?></p>
                                     <h3><span data-job-role="<?= e($job['role']); ?>"><?= e($job['role']); ?></span> <span><?= e($job['company']); ?></span></h3>
@@ -305,6 +305,7 @@ function e(string $value): string
                             </article>
                         <?php endforeach; ?>
                     </div>
+                    <button class="timeline-toggle" type="button" data-experience-toggle data-i18n-toggle="showOlder" aria-expanded="false">Pokaż starsze doświadczenie</button>
                 </section>
 
                 <section class="section" aria-labelledby="education-title">

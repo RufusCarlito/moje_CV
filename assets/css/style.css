@@ -754,6 +754,40 @@ h1 {
   color: var(--muted);
 }
 
+.timeline-item--older {
+  animation: olderExperienceIn 180ms ease both;
+}
+
+.timeline-toggle {
+  min-height: 44px;
+  margin-top: 22px;
+  padding: 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-muted);
+  color: var(--accent-dark);
+  font: inherit;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.timeline-toggle:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+@keyframes olderExperienceIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .education-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
