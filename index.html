@@ -45,11 +45,19 @@
                     <path d="M11.3 17.8h1.4"></path>
                 </svg>
             </button>
+            <span class="viewport-chip" data-viewport-chip>desktop / grid</span>
         </div>
-        <div class="language-switcher" aria-label="Wybór języka">
-            <button type="button" class="is-active" data-lang="pl">PL</button>
-            <button type="button" data-lang="en">EN</button>
-            <button type="button" data-lang="de">DE</button>
+        <div class="top-actions">
+            <div class="audience-switcher" aria-label="Tryb odbiorcy">
+                <button type="button" class="is-active" data-audience="recruiter" data-i18n="modes.recruiter">HR</button>
+                <button type="button" data-audience="developer" data-i18n="modes.developer">DEV</button>
+            </div>
+            <button class="developer-toggle" type="button" data-developer-toggle aria-pressed="false" aria-label="Włącz tryb developerski">&lt;/&gt;</button>
+            <div class="language-switcher" aria-label="Wybór języka">
+                <button type="button" class="is-active" data-lang="pl">PL</button>
+                <button type="button" data-lang="en">EN</button>
+                <button type="button" data-lang="de">DE</button>
+            </div>
         </div>
     </div>
 
@@ -68,6 +76,11 @@
                                         <a class="button button--ghost" href="https://github.com/RufusCarlito" target="_blank" rel="noreferrer">GitHub</a>
                 </div>
             </div>
+        </section>
+
+        <section class="terminal-status" aria-label="Status techniczny strony">
+            <span class="terminal-status__prompt">krystian@cv:~$</span>
+            <span class="terminal-status__text" data-terminal-status>booting portfolio interface...</span>
         </section>
 
         <div class="layout">
@@ -92,32 +105,42 @@
 
                 <section class="panel">
                     <h2 data-i18n="sections.tech">Umiejętności techniczne</h2>
-                    <div class="tag-list">
-                                                    <span>HTML5</span>
-                                                    <span>CSS3</span>
-                                                    <span>SCSS</span>
-                                                    <span>JavaScript</span>
-                                                    <span>jQuery</span>
-                                                    <span>PHP</span>
-                                                    <span>Python</span>
-                                                    <span>MySQL</span>
-                                                    <span>Magento 2</span>
-                                                    <span>RWD</span>
+                    <div class="tag-list" data-skill-list>
+                                                    <button type="button" data-skill-filter="HTML5">HTML5</button>
+                                                    <button type="button" data-skill-filter="CSS3">CSS3</button>
+                                                    <button type="button" data-skill-filter="SCSS">SCSS</button>
+                                                    <button type="button" data-skill-filter="JavaScript">JavaScript</button>
+                                                    <button type="button" data-skill-filter="jQuery">jQuery</button>
+                                                    <button type="button" data-skill-filter="PHP">PHP</button>
+                                                    <button type="button" data-skill-filter="Python">Python</button>
+                                                    <button type="button" data-skill-filter="MySQL">MySQL</button>
+                                                    <button type="button" data-skill-filter="Magento 2">Magento 2</button>
+                                                    <button type="button" data-skill-filter="RWD">RWD</button>
                                             </div>
                 </section>
 
                 <section class="panel">
                     <h2 data-i18n="sections.tools">Narzędzia i analiza</h2>
-                    <div class="tag-list tag-list--muted">
-                                                    <span>Git</span>
-                                                    <span>Docker</span>
-                                                    <span>Postman</span>
-                                                    <span>Jira</span>
-                                                    <span>Confluence</span>
-                                                    <span>Figma</span>
-                                                    <span>BPMN</span>
-                                                    <span>UML</span>
+                    <div class="tag-list tag-list--muted" data-skill-list>
+                                                    <button type="button" data-skill-filter="Git">Git</button>
+                                                    <button type="button" data-skill-filter="Docker">Docker</button>
+                                                    <button type="button" data-skill-filter="Postman">Postman</button>
+                                                    <button type="button" data-skill-filter="Jira">Jira</button>
+                                                    <button type="button" data-skill-filter="Confluence">Confluence</button>
+                                                    <button type="button" data-skill-filter="Figma">Figma</button>
+                                                    <button type="button" data-skill-filter="BPMN">BPMN</button>
+                                                    <button type="button" data-skill-filter="UML">UML</button>
                                             </div>
+                </section>
+
+                <section class="panel diagnostic-panel" data-dev-only>
+                    <h2 data-i18n="sections.diagnostics">Diagnostyka</h2>
+                    <ul class="diagnostic-list">
+                        <li><span>RWD</span><strong data-rwd-status>desktop / grid</strong></li>
+                        <li><span>PHP</span><strong>render + static export</strong></li>
+                        <li><span>JS</span><strong>i18n / modal / filters</strong></li>
+                        <li><span>Tests</span><strong>node + php lint</strong></li>
+                    </ul>
                 </section>
 
                 <section class="panel">
@@ -158,23 +181,40 @@
                         <h2 id="projects-title" data-i18n="sections.projects">Projekty</h2>
                     </div>
                     <div class="project-grid">
-                                                    <article class="project-card">
+                                                    <article class="project-card" data-tech="JavaScript|CSS3|RWD">
                                 <h3>Hangman game</h3>
                                 <p data-project-description="Hangman game">Gra w wisielca z prostą logiką JavaScript.</p>
+                                <div class="tech-stack" data-dev-only>
+                                                                            <span>JavaScript</span>
+                                                                            <span>CSS3</span>
+                                                                            <span>RWD</span>
+                                                                    </div>
+                                <p class="developer-note" data-dev-only>Lokalny popup, własna logika gry i responsywna klawiatura liter.</p>
                                                                     <button class="project-card__action" type="button" data-modal-open data-project-src="assets/projects/hangOut/index.html" data-project-title="Hangman game">
                                         <span data-i18n="actions.viewProject">Zobacz projekt</span>
                                     </button>
                                                             </article>
-                                                    <article class="project-card">
+                                                    <article class="project-card" data-tech="JavaScript|CSS3">
                                 <h3>Jumping rectangle game</h3>
                                 <p data-project-description="Jumping rectangle game">Lokalna wersja gry zręcznościowej inspirowanej pierwotnym projektem.</p>
+                                <div class="tech-stack" data-dev-only>
+                                                                            <span>JavaScript</span>
+                                                                            <span>CSS3</span>
+                                                                    </div>
+                                <p class="developer-note" data-dev-only>Oddzielony silnik gry, test jednostkowy i płynniejsza pętla animacji.</p>
                                                                     <button class="project-card__action" type="button" data-modal-open data-project-src="assets/projects/flappySquare/index.html" data-project-title="Jumping rectangle game">
                                         <span data-i18n="actions.viewProject">Zobacz projekt</span>
                                     </button>
                                                             </article>
-                                                    <article class="project-card">
+                                                    <article class="project-card" data-tech="HTML5|CSS3|RWD">
                                 <h3>Advertising page</h3>
                                 <p data-project-description="Advertising page">Responsywna strona reklamowa.</p>
+                                <div class="tech-stack" data-dev-only>
+                                                                            <span>HTML5</span>
+                                                                            <span>CSS3</span>
+                                                                            <span>RWD</span>
+                                                                    </div>
+                                <p class="developer-note" data-dev-only>Osobna strona z naciskiem na layout mobilny i statyczne assety.</p>
                                                                     <a href="assets/projects/pageMobile/index.html" target="_blank" rel="noreferrer" data-i18n="actions.viewProject">Zobacz projekt</a>
                                                             </article>
                                             </div>
@@ -186,60 +226,93 @@
                         <h2 id="experience-title" data-i18n="sections.experience">Doświadczenie</h2>
                     </div>
                     <div class="timeline">
-                                                    <article class="timeline-item">
+                                                    <article class="timeline-item" data-tech="Git|Postman|Docker">
                                 <div>
                                     <p class="timeline-item__period">10.2025 - obecnie</p>
                                     <h3><span data-job-role="Specjalista IT">Specjalista IT</span> <span>Orlen Trading Switzerland</span></h3>
+                                    <div class="tech-stack tech-stack--compact" data-dev-only>
+                                                                                    <span>Git</span>
+                                                                                    <span>Postman</span>
+                                                                                    <span>Docker</span>
+                                                                            </div>
                                 </div>
                                 <ul>
                                                                             <li data-i18n-job="Utrzymanie systemów, sieci i środowiska firmowego z naciskiem na stabilność oraz bezpieczeństwo.">Utrzymanie systemów, sieci i środowiska firmowego z naciskiem na stabilność oraz bezpieczeństwo.</li>
                                                                             <li data-i18n-job="Diagnozowanie problemów IT i wdrażanie praktycznych usprawnień dla użytkowników.">Diagnozowanie problemów IT i wdrażanie praktycznych usprawnień dla użytkowników.</li>
                                                                     </ul>
                             </article>
-                                                    <article class="timeline-item">
+                                                    <article class="timeline-item" data-tech="Jira|Confluence|BPMN">
                                 <div>
                                     <p class="timeline-item__period">12.2023 - 09.2025</p>
                                     <h3><span data-job-role="Specjalista ds. kontroli biznesowej IT">Specjalista ds. kontroli biznesowej IT</span> <span>Orlen S.A.</span></h3>
+                                    <div class="tech-stack tech-stack--compact" data-dev-only>
+                                                                                    <span>Jira</span>
+                                                                                    <span>Confluence</span>
+                                                                                    <span>BPMN</span>
+                                                                            </div>
                                 </div>
                                 <ul>
                                                                             <li data-i18n-job="Praca z budżetami IT, analizą danych i rekomendacjami dla projektów technologicznych.">Praca z budżetami IT, analizą danych i rekomendacjami dla projektów technologicznych.</li>
                                                                             <li data-i18n-job="Łączenie perspektywy technicznej z biznesową w środowisku dużej organizacji.">Łączenie perspektywy technicznej z biznesową w środowisku dużej organizacji.</li>
                                                                     </ul>
                             </article>
-                                                    <article class="timeline-item">
+                                                    <article class="timeline-item" data-tech="Jira|Confluence|BPMN|UML">
                                 <div>
                                     <p class="timeline-item__period">09.2022 - 11.2023</p>
                                     <h3><span data-job-role="Konsultant ds. analizy biznesowo-systemowej / PM">Konsultant ds. analizy biznesowo-systemowej / PM</span> <span>SkyCash Poland</span></h3>
+                                    <div class="tech-stack tech-stack--compact" data-dev-only>
+                                                                                    <span>Jira</span>
+                                                                                    <span>Confluence</span>
+                                                                                    <span>BPMN</span>
+                                                                                    <span>UML</span>
+                                                                            </div>
                                 </div>
                                 <ul>
                                                                             <li data-i18n-job="Analiza wymagań, diagramy BPMN i opisy procesów dla systemów miejskich oraz parkingowych.">Analiza wymagań, diagramy BPMN i opisy procesów dla systemów miejskich oraz parkingowych.</li>
                                                                             <li data-i18n-job="Przekładanie potrzeb biznesu na konkretne zadania dla zespołów technicznych.">Przekładanie potrzeb biznesu na konkretne zadania dla zespołów technicznych.</li>
                                                                     </ul>
                             </article>
-                                                    <article class="timeline-item timeline-item--older" data-experience-older hidden>
+                                                    <article class="timeline-item timeline-item--older" data-tech="PHP|Python|MySQL|Git" data-experience-older hidden>
                                 <div>
                                     <p class="timeline-item__period">03.2022 - 04.2024</p>
                                     <h3><span data-job-role="Backend developer">Backend developer</span> <span>Wirtualna Polska</span></h3>
+                                    <div class="tech-stack tech-stack--compact" data-dev-only>
+                                                                                    <span>PHP</span>
+                                                                                    <span>Python</span>
+                                                                                    <span>MySQL</span>
+                                                                                    <span>Git</span>
+                                                                            </div>
                                 </div>
                                 <ul>
                                                                             <li data-i18n-job="Współtworzenie architektury backendowej dla serwisów o dużym natężeniu ruchu.">Współtworzenie architektury backendowej dla serwisów o dużym natężeniu ruchu.</li>
                                                                             <li data-i18n-job="Implementacja, testowanie i dokumentowanie zmian w logice kodu.">Implementacja, testowanie i dokumentowanie zmian w logice kodu.</li>
                                                                     </ul>
                             </article>
-                                                    <article class="timeline-item timeline-item--older" data-experience-older hidden>
+                                                    <article class="timeline-item timeline-item--older" data-tech="HTML5|CSS3|JavaScript|PHP|Magento 2" data-experience-older hidden>
                                 <div>
                                     <p class="timeline-item__period">04.2020 - 04.2022</p>
                                     <h3><span data-job-role="Fullstack developer">Fullstack developer</span> <span>Hotchili Digital</span></h3>
+                                    <div class="tech-stack tech-stack--compact" data-dev-only>
+                                                                                    <span>HTML5</span>
+                                                                                    <span>CSS3</span>
+                                                                                    <span>JavaScript</span>
+                                                                                    <span>PHP</span>
+                                                                                    <span>Magento 2</span>
+                                                                            </div>
                                 </div>
                                 <ul>
                                                                             <li data-i18n-job="Praca z frontendem, backendem i UX/UI przy projektach wdrożeniowych.">Praca z frontendem, backendem i UX/UI przy projektach wdrożeniowych.</li>
                                                                             <li data-i18n-job="Projektowanie, implementacja i testowanie zmian w aplikacjach webowych.">Projektowanie, implementacja i testowanie zmian w aplikacjach webowych.</li>
                                                                     </ul>
                             </article>
-                                                    <article class="timeline-item timeline-item--older" data-experience-older hidden>
+                                                    <article class="timeline-item timeline-item--older" data-tech="UML|Figma" data-experience-older hidden>
                                 <div>
                                     <p class="timeline-item__period">08.2017 - 08.2019</p>
                                     <h3><span data-job-role="Stażysta / specjalista elektronik">Stażysta / specjalista elektronik</span> <span>Blinkee.city</span></h3>
+                                    <div class="tech-stack tech-stack--compact" data-dev-only>
+                                                                                    <span>UML</span>
+                                                                                    <span>Figma</span>
+                                                                            </div>
                                 </div>
                                 <ul>
                                                                             <li data-i18n-job="Projektowanie funkcjonalności elektronicznych dla pojazdów EV.">Projektowanie funkcjonalności elektronicznych dla pojazdów EV.</li>

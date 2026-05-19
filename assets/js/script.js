@@ -25,6 +25,9 @@ const translations = {
     "experience.hideOlder": "Ukryj starsze doświadczenie",
     "contact.phone": "Telefon",
     "contact.location": "Lokalizacja",
+    "modes.recruiter": "HR",
+    "modes.developer": "DEV",
+    "sections.diagnostics": "Diagnostyka",
   },
   en: {
     "profile.role": "Frontend / PHP developer",
@@ -50,6 +53,9 @@ const translations = {
     "experience.hideOlder": "Hide older experience",
     "contact.phone": "Phone",
     "contact.location": "Location",
+    "modes.recruiter": "HR",
+    "modes.developer": "DEV",
+    "sections.diagnostics": "Diagnostics",
   },
   de: {
     "profile.role": "Frontend / PHP-Entwickler",
@@ -75,6 +81,9 @@ const translations = {
     "experience.hideOlder": "Ältere Erfahrung ausblenden",
     "contact.phone": "Telefon",
     "contact.location": "Standort",
+    "modes.recruiter": "HR",
+    "modes.developer": "DEV",
+    "sections.diagnostics": "Diagnose",
   },
 };
 
@@ -312,6 +321,32 @@ document.querySelectorAll("[data-lang]").forEach((button) => {
 
 const deviceViewButtons = document.querySelectorAll("[data-device-view]");
 const deviceViewClasses = ["preview-desktop", "preview-tablet", "preview-phone"];
+const viewportChip = document.querySelector("[data-viewport-chip]");
+const rwdStatus = document.querySelector("[data-rwd-status]");
+
+function getLayoutName(view) {
+  if (view === "desktop") {
+    return "desktop / grid";
+  }
+
+  if (view === "tablet") {
+    return "tablet / 2 cols";
+  }
+
+  return "phone / single";
+}
+
+function updateViewportStatus(view) {
+  const status = getLayoutName(view);
+
+  if (viewportChip) {
+    viewportChip.textContent = status;
+  }
+
+  if (rwdStatus) {
+    rwdStatus.textContent = status;
+  }
+}
 
 function setDeviceView(view) {
   document.body.classList.remove(...deviceViewClasses);
@@ -320,6 +355,8 @@ function setDeviceView(view) {
   deviceViewButtons.forEach((button) => {
     button.classList.toggle("is-active", button.dataset.deviceView === view);
   });
+
+  updateViewportStatus(view);
 }
 
 deviceViewButtons.forEach((button) => {
@@ -353,21 +390,151 @@ if (experienceToggle) {
   });
 }
 
+const developerToggle = document.querySelector("[data-developer-toggle]");
+const audienceButtons = document.querySelectorAll("[data-audience]");
+const skillButtons = document.querySelectorAll("[data-skill-filter]");
+const filterTargets = document.querySelectorAll("[data-tech]");
+const terminalStatus = document.querySelector("[data-terminal-status]");
+let activeSkill = "";
+let terminalTimer = null;
+
+const terminalMessages = [
+  "rwd: ok | php: render | js: interactive | tests: passing",
+  "projects: local assets | modals: enabled | print: direct pdf",
+  "mode: recruiter friendly | developer layer: ready",
+];
+
+function typeTerminalMessage(message) {
+  if (!terminalStatus) {
+    return;
+  }
+
+  window.clearInterval(terminalTimer);
+  terminalStatus.textContent = "";
+
+  let index = 0;
+  terminalTimer = window.setInterval(() => {
+    terminalStatus.textContent = message.slice(0, index);
+    index += 1;
+
+    if (index > message.length) {
+      window.clearInterval(terminalTimer);
+    }
+  }, 24);
+}
+
+function rotateTerminalMessages() {
+  let index = 0;
+  typeTerminalMessage(terminalMessages[index]);
+
+  window.setInterval(() => {
+    index = (index + 1) % terminalMessages.length;
+    typeTerminalMessage(terminalMessages[index]);
+  }, 6500);
+}
+
+function setDeveloperMode(enabled) {
+  document.body.classList.toggle("is-developer-mode", enabled);
+
+  if (developerToggle) {
+    developerToggle.classList.toggle("is-active", enabled);
+    developerToggle.setAttribute("aria-pressed", String(enabled));
+  }
+}
+
+function setAudienceMode(mode) {
+  document.body.classList.toggle("audience-developer", mode === "developer");
+  document.body.classList.toggle("audience-recruiter", mode === "recruiter");
+
+  audienceButtons.forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.audience === mode);
+  });
+}
+
+function getTechList(element) {
+  return (element.dataset.tech || "")
+    .split("|")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function applySkillFilter(skill) {
+  activeSkill = activeSkill === skill ? "" : skill;
+
+  skillButtons.forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.skillFilter === activeSkill);
+  });
+
+  filterTargets.forEach((target) => {
+    const matches = !activeSkill || getTechList(target).includes(activeSkill);
+    target.classList.toggle("is-dimmed", !matches);
+  });
+
+  if (activeSkill) {
+    typeTerminalMessage(`skill filter: ${activeSkill} | matching modules highlighted`);
+  }
+}
+
+if (developerToggle) {
+  developerToggle.addEventListener("click", () => {
+    setDeveloperMode(!document.body.classList.contains("is-developer-mode"));
+  });
+}
+
+audienceButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    setAudienceMode(button.dataset.audience);
+    typeTerminalMessage(`audience mode: ${button.dataset.audience}`);
+  });
+});
+
+skillButtons.forEach((button) => {
+  button.addEventListener("click", () => applySkillFilter(button.dataset.skillFilter));
+});
+
+document.querySelectorAll(".panel, .section, .project-card, .timeline-item, .terminal-status").forEach((element, index) => {
+  element.classList.add("reveal-item");
+  element.style.transitionDelay = `${Math.min(index * 35, 260)}ms`;
+});
+
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll(".reveal-item").forEach((element) => revealObserver.observe(element));
+} else {
+  document.querySelectorAll(".reveal-item").forEach((element) => element.classList.add("is-visible"));
+}
+
+setAudienceMode("recruiter");
+rotateTerminalMessages();
+
 document.querySelectorAll("[data-print-pdf]").forEach((button) => {
   button.addEventListener("click", () => {
-    const frame = document.createElement("iframe");
-    frame.src = button.dataset.printPdf;
-    frame.style.position = "fixed";
-    frame.style.right = "0";
-    frame.style.bottom = "0";
-    frame.style.width = "0";
-    frame.style.height = "0";
-    frame.style.border = "0";
-    frame.onload = () => {
-      frame.contentWindow?.focus();
-      frame.contentWindow?.print();
-    };
-    document.body.append(frame);
+    const printWindow = window.open(button.dataset.printPdf, "_blank");
+
+    if (!printWindow) {
+      window.location.href = button.dataset.printPdf;
+      return;
+    }
+
+    printWindow.addEventListener("load", () => {
+      printWindow.focus();
+      printWindow.print();
+    });
+
+    window.setTimeout(() => {
+      if (!printWindow.closed) {
+        printWindow.focus();
+        printWindow.print();
+      }
+    }, 1200);
   });
 });
 

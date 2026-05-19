@@ -9,6 +9,11 @@ body
 	padding: 24px;
 }
 
+*
+{
+	box-sizing: border-box;
+}
+
 #container
 {
 	width: min(1200px, 100%);
@@ -42,9 +47,13 @@ body
 #alphabet
 {
 	float: left;
-	text-align: center;
 	width: 50%;
 	min-height: 280px;
+	display: grid;
+	grid-template-columns: repeat(7, clamp(42px, 5vw, 54px));
+	justify-content: center;
+	align-content: start;
+	gap: 10px;
 }
 
 #hangman-actions
@@ -56,18 +65,21 @@ body
 
 .letter
 {
-	width: 35px;
-	height: 35px;
-	text-align: center;
-	padding: 5px;
-	margin: 5px;
+	width: 100%;
+	aspect-ratio: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	margin: 0;
 	border: 3px solid gray;
 	background: transparent;
 	color: lightgrey;
-	float: left;
 	cursor: pointer;
-	border-radius: 15px;
+	border-radius: 999px;
 	font: inherit;
+	font-size: clamp(1.35rem, 3.3vw, 2rem);
+	font-weight: 850;
 	line-height: 1;
 }
 
@@ -99,7 +111,7 @@ body
 
 .letter-break
 {
-	clear: both;
+	display: none;
 }
 
 .reset
@@ -132,18 +144,14 @@ body
 	}
 
 	#alphabet {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
+		grid-template-columns: repeat(auto-fit, minmax(38px, 44px));
+		gap: 8px;
 		margin-top: 18px;
 	}
 
 	.letter {
-		width: 32px;
-		height: 32px;
-		padding: 4px;
-		margin: 4px;
-		border-radius: 10px;
+		font-size: 1.25rem;
+		border-width: 2px;
 	}
 
 	.letter-break {

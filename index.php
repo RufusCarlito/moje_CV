@@ -31,18 +31,24 @@ $projects = [
         'description' => 'Gra w wisielca z prostą logiką JavaScript.',
         'url' => 'assets/projects/hangOut/index.html',
         'mode' => 'modal',
+        'tech' => ['JavaScript', 'CSS3', 'RWD'],
+        'note' => 'Lokalny popup, własna logika gry i responsywna klawiatura liter.',
     ],
     [
         'name' => 'Jumping rectangle game',
         'description' => 'Lokalna wersja gry zręcznościowej inspirowanej pierwotnym projektem.',
         'url' => 'assets/projects/flappySquare/index.html',
         'mode' => 'modal',
+        'tech' => ['JavaScript', 'CSS3'],
+        'note' => 'Oddzielony silnik gry, test jednostkowy i płynniejsza pętla animacji.',
     ],
     [
         'name' => 'Advertising page',
         'description' => 'Responsywna strona reklamowa.',
         'url' => 'assets/projects/pageMobile/index.html',
         'mode' => 'page',
+        'tech' => ['HTML5', 'CSS3', 'RWD'],
+        'note' => 'Osobna strona z naciskiem na layout mobilny i statyczne assety.',
     ],
 ];
 
@@ -55,6 +61,7 @@ $jobs = [
             'Utrzymanie systemów, sieci i środowiska firmowego z naciskiem na stabilność oraz bezpieczeństwo.',
             'Diagnozowanie problemów IT i wdrażanie praktycznych usprawnień dla użytkowników.',
         ],
+        'tech' => ['Git', 'Postman', 'Docker'],
     ],
     [
         'role' => 'Specjalista ds. kontroli biznesowej IT',
@@ -64,6 +71,7 @@ $jobs = [
             'Praca z budżetami IT, analizą danych i rekomendacjami dla projektów technologicznych.',
             'Łączenie perspektywy technicznej z biznesową w środowisku dużej organizacji.',
         ],
+        'tech' => ['Jira', 'Confluence', 'BPMN'],
     ],
     [
         'role' => 'Konsultant ds. analizy biznesowo-systemowej / PM',
@@ -73,6 +81,7 @@ $jobs = [
             'Analiza wymagań, diagramy BPMN i opisy procesów dla systemów miejskich oraz parkingowych.',
             'Przekładanie potrzeb biznesu na konkretne zadania dla zespołów technicznych.',
         ],
+        'tech' => ['Jira', 'Confluence', 'BPMN', 'UML'],
     ],
     [
         'role' => 'Backend developer',
@@ -82,6 +91,7 @@ $jobs = [
             'Współtworzenie architektury backendowej dla serwisów o dużym natężeniu ruchu.',
             'Implementacja, testowanie i dokumentowanie zmian w logice kodu.',
         ],
+        'tech' => ['PHP', 'Python', 'MySQL', 'Git'],
     ],
     [
         'role' => 'Fullstack developer',
@@ -91,6 +101,7 @@ $jobs = [
             'Praca z frontendem, backendem i UX/UI przy projektach wdrożeniowych.',
             'Projektowanie, implementacja i testowanie zmian w aplikacjach webowych.',
         ],
+        'tech' => ['HTML5', 'CSS3', 'JavaScript', 'PHP', 'Magento 2'],
     ],
     [
         'role' => 'Stażysta / specjalista elektronik',
@@ -100,6 +111,7 @@ $jobs = [
             'Projektowanie funkcjonalności elektronicznych dla pojazdów EV.',
             'Dokumentacja techniczno-użytkowa i wsparcie rozwiązań dla bezpieczeństwa użytkownika.',
         ],
+        'tech' => ['UML', 'Figma'],
     ],
 ];
 
@@ -115,6 +127,11 @@ $downloadPath = $downloadFiles ? 'assets/downloads/' . basename($downloadFiles[0
 function e(string $value): string
 {
     return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+}
+
+function techAttr(array $items): string
+{
+    return e(implode('|', $items));
 }
 ?>
 <!DOCTYPE html>
@@ -164,11 +181,19 @@ function e(string $value): string
                     <path d="M11.3 17.8h1.4"></path>
                 </svg>
             </button>
+            <span class="viewport-chip" data-viewport-chip>desktop / grid</span>
         </div>
-        <div class="language-switcher" aria-label="Wybór języka">
-            <button type="button" class="is-active" data-lang="pl">PL</button>
-            <button type="button" data-lang="en">EN</button>
-            <button type="button" data-lang="de">DE</button>
+        <div class="top-actions">
+            <div class="audience-switcher" aria-label="Tryb odbiorcy">
+                <button type="button" class="is-active" data-audience="recruiter" data-i18n="modes.recruiter">HR</button>
+                <button type="button" data-audience="developer" data-i18n="modes.developer">DEV</button>
+            </div>
+            <button class="developer-toggle" type="button" data-developer-toggle aria-pressed="false" aria-label="Włącz tryb developerski">&lt;/&gt;</button>
+            <div class="language-switcher" aria-label="Wybór języka">
+                <button type="button" class="is-active" data-lang="pl">PL</button>
+                <button type="button" data-lang="en">EN</button>
+                <button type="button" data-lang="de">DE</button>
+            </div>
         </div>
     </div>
 
@@ -193,6 +218,11 @@ function e(string $value): string
             </div>
         </section>
 
+        <section class="terminal-status" aria-label="Status techniczny strony">
+            <span class="terminal-status__prompt">krystian@cv:~$</span>
+            <span class="terminal-status__text" data-terminal-status>booting portfolio interface...</span>
+        </section>
+
         <div class="layout">
             <aside class="sidebar" aria-label="Informacje kontaktowe i umiejętności">
                 <section class="panel contact-panel">
@@ -215,20 +245,30 @@ function e(string $value): string
 
                 <section class="panel">
                     <h2 data-i18n="sections.tech">Umiejętności techniczne</h2>
-                    <div class="tag-list">
+                    <div class="tag-list" data-skill-list>
                         <?php foreach ($techSkills as $skill): ?>
-                            <span><?= e($skill); ?></span>
+                            <button type="button" data-skill-filter="<?= e($skill); ?>"><?= e($skill); ?></button>
                         <?php endforeach; ?>
                     </div>
                 </section>
 
                 <section class="panel">
                     <h2 data-i18n="sections.tools">Narzędzia i analiza</h2>
-                    <div class="tag-list tag-list--muted">
+                    <div class="tag-list tag-list--muted" data-skill-list>
                         <?php foreach ($toolSkills as $skill): ?>
-                            <span><?= e($skill); ?></span>
+                            <button type="button" data-skill-filter="<?= e($skill); ?>"><?= e($skill); ?></button>
                         <?php endforeach; ?>
                     </div>
+                </section>
+
+                <section class="panel diagnostic-panel" data-dev-only>
+                    <h2 data-i18n="sections.diagnostics">Diagnostyka</h2>
+                    <ul class="diagnostic-list">
+                        <li><span>RWD</span><strong data-rwd-status>desktop / grid</strong></li>
+                        <li><span>PHP</span><strong>render + static export</strong></li>
+                        <li><span>JS</span><strong>i18n / modal / filters</strong></li>
+                        <li><span>Tests</span><strong>node + php lint</strong></li>
+                    </ul>
                 </section>
 
                 <section class="panel">
@@ -270,9 +310,15 @@ function e(string $value): string
                     </div>
                     <div class="project-grid">
                         <?php foreach ($projects as $project): ?>
-                            <article class="project-card">
+                            <article class="project-card" data-tech="<?= techAttr($project['tech']); ?>">
                                 <h3><?= e($project['name']); ?></h3>
                                 <p data-project-description="<?= e($project['name']); ?>"><?= e($project['description']); ?></p>
+                                <div class="tech-stack" data-dev-only>
+                                    <?php foreach ($project['tech'] as $tech): ?>
+                                        <span><?= e($tech); ?></span>
+                                    <?php endforeach; ?>
+                                </div>
+                                <p class="developer-note" data-dev-only><?= e($project['note']); ?></p>
                                 <?php if ($project['mode'] === 'modal'): ?>
                                     <button class="project-card__action" type="button" data-modal-open data-project-src="<?= e($project['url']); ?>" data-project-title="<?= e($project['name']); ?>">
                                         <span data-i18n="actions.viewProject">Zobacz projekt</span>
@@ -292,10 +338,15 @@ function e(string $value): string
                     </div>
                     <div class="timeline">
                         <?php foreach ($jobs as $index => $job): ?>
-                            <article class="timeline-item<?= $index >= 3 ? ' timeline-item--older' : ''; ?>"<?= $index >= 3 ? ' data-experience-older hidden' : ''; ?>>
+                            <article class="timeline-item<?= $index >= 3 ? ' timeline-item--older' : ''; ?>" data-tech="<?= techAttr($job['tech']); ?>"<?= $index >= 3 ? ' data-experience-older hidden' : ''; ?>>
                                 <div>
                                     <p class="timeline-item__period"><?= e($job['period']); ?></p>
                                     <h3><span data-job-role="<?= e($job['role']); ?>"><?= e($job['role']); ?></span> <span><?= e($job['company']); ?></span></h3>
+                                    <div class="tech-stack tech-stack--compact" data-dev-only>
+                                        <?php foreach ($job['tech'] as $tech): ?>
+                                            <span><?= e($tech); ?></span>
+                                        <?php endforeach; ?>
+                                    </div>
                                 </div>
                                 <ul>
                                     <?php foreach ($job['items'] as $item): ?>
