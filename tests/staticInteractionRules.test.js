@@ -22,7 +22,11 @@ assert.ok(!/\.letter\s*\{[^}]*float:\s*left/i.test(hangmanCss), "hangman letters
 assert.ok(html.includes("data-developer-toggle"), "page should expose developer mode toggle");
 assert.ok(html.includes("data-terminal-status"), "page should render the terminal status bar");
 assert.ok(html.includes("data-skill-filter"), "skills should be interactive filters");
+assert.ok(html.includes("data-weather-card"), "page should render a weather card");
+assert.ok(html.includes("data-weather-forecast"), "weather card should expose a forecast container");
 assert.ok(js.includes("function applySkillFilter"), "skill filtering should be handled in JavaScript");
 assert.ok(js.includes("IntersectionObserver"), "sections should reveal with scroll-aware animation");
+assert.ok(js.includes("api.open-meteo.com/v1/forecast"), "weather should use the Open-Meteo forecast API");
+assert.ok(js.includes("navigator.geolocation"), "weather should try user location before relying on fallback display");
 
 console.log("staticInteractionRules.test.js: OK");

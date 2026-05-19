@@ -28,6 +28,7 @@ const translations = {
     "modes.recruiter": "HR",
     "modes.developer": "DEV",
     "sections.diagnostics": "Diagnostyka",
+    "sections.weather": "Pogoda",
   },
   en: {
     "profile.role": "Frontend / PHP developer",
@@ -56,6 +57,7 @@ const translations = {
     "modes.recruiter": "HR",
     "modes.developer": "DEV",
     "sections.diagnostics": "Diagnostics",
+    "sections.weather": "Weather",
   },
   de: {
     "profile.role": "Frontend / PHP-Entwickler",
@@ -84,6 +86,7 @@ const translations = {
     "modes.recruiter": "HR",
     "modes.developer": "DEV",
     "sections.diagnostics": "Diagnose",
+    "sections.weather": "Wetter",
   },
 };
 
@@ -514,6 +517,127 @@ if ("IntersectionObserver" in window) {
 
 setAudienceMode("recruiter");
 rotateTerminalMessages();
+
+const weatherCard = document.querySelector("[data-weather-card]");
+const weatherToggle = document.querySelector("[data-weather-toggle]");
+const weatherPlace = document.querySelector("[data-weather-place]");
+const weatherTemp = document.querySelector("[data-weather-temp]");
+const weatherMeta = document.querySelector("[data-weather-meta]");
+const weatherForecast = document.querySelector("[data-weather-forecast]");
+
+const warsawWeatherLocation = {
+  name: "Warszawa",
+  latitude: 52.2297,
+  longitude: 21.0122,
+};
+
+const weatherCodeMap = new Map([
+  [0, ["sunny", "Słonecznie", "☀"]],
+  [1, ["sunny", "Przeważnie słonecznie", "☀"]],
+  [2, ["cloudy", "Częściowe zachmurzenie", "☁"]],
+  [3, ["cloudy", "Pochmurno", "☁"]],
+  [45, ["foggy", "Mgła", "≋"]],
+  [48, ["foggy", "Mgła osadzająca szadź", "≋"]],
+  [51, ["rainy", "Mżawka", "☂"]],
+  [53, ["rainy", "Mżawka", "☂"]],
+  [55, ["rainy", "Silna mżawka", "☂"]],
+  [61, ["rainy", "Deszcz", "☂"]],
+  [63, ["rainy", "Deszcz", "☂"]],
+  [65, ["rainy", "Silny deszcz", "☂"]],
+  [71, ["snowy", "Śnieg", "*"]],
+  [73, ["snowy", "Śnieg", "*"]],
+  [75, ["snowy", "Silny śnieg", "*"]],
+  [80, ["rainy", "Przelotny deszcz", "☂"]],
+  [81, ["rainy", "Przelotny deszcz", "☂"]],
+  [82, ["rainy", "Ulewa", "☂"]],
+  [95, ["rainy", "Burza", "☂"]],
+]);
+
+function getWeatherDetails(code) {
+  return weatherCodeMap.get(code) || ["cloudy", "Zmienna pogoda", "☁"];
+}
+
+function formatWeatherDay(dateValue) {
+  return new Intl.DateTimeFormat("pl-PL", { weekday: "short" }).format(new Date(dateValue));
+}
+
+function renderWeather(data, locationName) {
+  const currentTemp = Math.round(data.current.temperature_2m);
+  const [condition, label] = getWeatherDetails(data.current.weather_code);
+
+  weatherCard.dataset.weatherCondition = condition;
+  weatherCard.classList.remove("weather-card--loading");
+  weatherPlace.textContent = locationName;
+  weatherTemp.textContent = `${currentTemp}°`;
+  weatherMeta.textContent = `${label}. Odczuwalnie ${Math.round(data.current.apparent_temperature)}°, wiatr ${Math.round(data.current.wind_speed_10m)} km/h.`;
+
+  weatherForecast.innerHTML = data.daily.time.slice(0, 7).map((day, index) => {
+    const [, dayLabel, icon] = getWeatherDetails(data.daily.weather_code[index]);
+    const min = Math.round(data.daily.temperature_2m_min[index]);
+    const max = Math.round(data.daily.temperature_2m_max[index]);
+
+    return `<div class="weather-forecast__day">
+      <span>${formatWeatherDay(day)}</span>
+      <span class="weather-forecast__icon" aria-label="${dayLabel}">${icon}</span>
+      <span>${min}° / ${max}°</span>
+    </div>`;
+  }).join("");
+}
+
+async function loadWeather(location) {
+  const params = new URLSearchParams({
+    latitude: String(location.latitude),
+    longitude: String(location.longitude),
+    current: "temperature_2m,apparent_temperature,weather_code,wind_speed_10m",
+    daily: "weather_code,temperature_2m_max,temperature_2m_min",
+    timezone: "auto",
+    forecast_days: "7",
+  });
+
+  const response = await fetch(`https://api.open-meteo.com/v1/forecast?${params.toString()}`);
+
+  if (!response.ok) {
+    throw new Error("Weather request failed");
+  }
+
+  renderWeather(await response.json(), location.name);
+}
+
+function loadLocalWeather() {
+  if (!weatherCard) {
+    return;
+  }
+
+  loadWeather(warsawWeatherLocation).catch(() => {
+    weatherMeta.textContent = "Nie udało się pobrać prognozy. Spróbuj odświeżyć stronę.";
+  });
+
+  if (!navigator.geolocation) {
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition((position) => {
+    loadWeather({
+      name: "Twoja lokalizacja",
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude,
+    }).catch(() => {});
+  }, () => {}, {
+    enableHighAccuracy: false,
+    maximumAge: 900000,
+    timeout: 5000,
+  });
+}
+
+if (weatherToggle && weatherForecast) {
+  weatherToggle.addEventListener("click", () => {
+    const expanded = weatherToggle.getAttribute("aria-expanded") === "true";
+    weatherToggle.setAttribute("aria-expanded", String(!expanded));
+    weatherForecast.hidden = expanded;
+  });
+}
+
+loadLocalWeather();
 
 document.querySelectorAll("[data-print-pdf]").forEach((button) => {
   button.addEventListener("click", () => {

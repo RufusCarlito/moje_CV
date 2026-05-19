@@ -160,6 +160,30 @@
                                                     <li data-i18n-list="languages">Angielski - komunikatywny</li>
                                             </ul>
                 </section>
+
+                <section class="panel weather-card weather-card--loading" data-weather-card data-weather-condition="sunny">
+                    <button class="weather-card__summary" type="button" data-weather-toggle aria-expanded="false">
+                        <span>
+                            <span class="weather-card__label" data-i18n="sections.weather">Pogoda</span>
+                            <strong data-weather-place>Warszawa</strong>
+                        </span>
+                        <span class="weather-card__temp" data-weather-temp>--°</span>
+                    </button>
+                    <div class="weather-scene" aria-hidden="true">
+                        <span class="weather-sun"></span>
+                        <span class="weather-cloud weather-cloud--one"></span>
+                        <span class="weather-cloud weather-cloud--two"></span>
+                        <span class="weather-rain weather-rain--one"></span>
+                        <span class="weather-rain weather-rain--two"></span>
+                        <span class="weather-rain weather-rain--three"></span>
+                        <span class="weather-snow weather-snow--one"></span>
+                        <span class="weather-snow weather-snow--two"></span>
+                        <span class="weather-fog weather-fog--one"></span>
+                        <span class="weather-fog weather-fog--two"></span>
+                    </div>
+                    <p class="weather-card__meta" data-weather-meta>Ładowanie prognozy...</p>
+                    <div class="weather-forecast" data-weather-forecast hidden></div>
+                </section>
             </aside>
 
             <div class="content">
