@@ -53,6 +53,9 @@
                 <button type="button" data-audience="developer" data-i18n="modes.developer">DEV</button>
             </div>
             <button class="developer-toggle" type="button" data-developer-toggle aria-pressed="false" aria-label="Włącz tryb developerski">&lt;/&gt;</button>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="Przełącz tryb dnia i nocy" aria-pressed="false">
+                <span class="theme-toggle__thumb"></span>
+            </button>
             <div class="language-switcher" aria-label="Wybór języka">
                 <button type="button" class="is-active" data-lang="pl">PL</button>
                 <button type="button" data-lang="en">EN</button>
@@ -71,8 +74,8 @@
                 <h1 id="page-title">Krystian Romsicki</h1>
                 <p class="lead" data-i18n="profile.summary">Tworzę proste, responsywne interfejsy i lubię, gdy kod jest czytelny także po kilku tygodniach. Rozwijam się w PHP, JavaScript i pracy z realnymi narzędziami webowymi.</p>
                 <div class="hero__actions" aria-label="Główne akcje">
-                                            <a class="button button--primary" href="assets/downloads/K.Romsicki_cv_pl.pdf" download data-i18n="actions.download">Pobierz CV</a>
-                        <button class="button button--ghost" type="button" data-print-pdf="assets/downloads/K.Romsicki_cv_pl.pdf" data-i18n="actions.print">Drukuj CV</button>
+                                            <a class="button button--primary" href="assets/downloads/K.Romsicki_cv_pl.pdf" download data-download-cv data-download-pl="assets/downloads/K.Romsicki_cv_pl.pdf" data-download-en="assets/downloads/K.Romsicki_cv_EN_1.pdf" data-download-de="assets/downloads/K.Romsicki_cv_EN_1.pdf" data-i18n="actions.download">Pobierz CV</a>
+                        <button class="button button--ghost" type="button" data-print-pdf="assets/downloads/K.Romsicki_cv_pl.pdf" data-print-pl="assets/downloads/K.Romsicki_cv_pl.pdf" data-print-en="assets/downloads/K.Romsicki_cv_EN_1.pdf" data-print-de="assets/downloads/K.Romsicki_cv_EN_1.pdf" data-i18n="actions.print">Drukuj CV</button>
                                         <a class="button button--ghost" href="https://github.com/RufusCarlito" target="_blank" rel="noreferrer">GitHub</a>
                 </div>
             </div>
@@ -167,10 +170,14 @@
                             <span class="weather-card__label" data-i18n="sections.weather">Pogoda</span>
                             <strong data-weather-place>Warszawa</strong>
                         </span>
-                        <span class="weather-card__temp" data-weather-temp>--°</span>
+                        <span class="weather-card__temps">
+                            <span class="weather-card__temp" data-weather-temp>--°</span>
+                            <span class="weather-card__range" data-weather-range>--° / --°</span>
+                        </span>
                     </button>
                     <div class="weather-scene" aria-hidden="true">
                         <span class="weather-sun"></span>
+                        <span class="weather-moon" data-weather-moon></span>
                         <span class="weather-cloud weather-cloud--one"></span>
                         <span class="weather-cloud weather-cloud--two"></span>
                         <span class="weather-rain weather-rain--one"></span>
@@ -241,6 +248,34 @@
                                 <p class="developer-note" data-dev-only>Osobna strona z naciskiem na layout mobilny i statyczne assety.</p>
                                                                     <a href="assets/projects/pageMobile/index.html" target="_blank" rel="noreferrer" data-i18n="actions.viewProject">Zobacz projekt</a>
                                                             </article>
+                                                    <article class="project-card" data-tech="PHP|MySQL|JavaScript|RWD">
+                                <h3>Domki</h3>
+                                <p data-project-description="Domki">System rezerwacji domków z panelem użytkownika i administracją.</p>
+                                <div class="tech-stack" data-dev-only>
+                                                                            <span>PHP</span>
+                                                                            <span>MySQL</span>
+                                                                            <span>JavaScript</span>
+                                                                            <span>RWD</span>
+                                                                    </div>
+                                <p class="developer-note" data-dev-only>Statyczne demo widoku: rezerwacje, konta, panel admina i dane w PHP/MySQL.</p>
+                                                                    <button class="project-card__action" type="button" data-modal-open data-project-src="assets/projects/domkiDemo/index.html" data-project-title="Domki">
+                                        <span data-i18n="actions.viewProject">Zobacz projekt</span>
+                                    </button>
+                                                            </article>
+                                                    <article class="project-card" data-tech="PHP|MySQL|JavaScript|RWD">
+                                <h3>Hurtownia</h3>
+                                <p data-project-description="Hurtownia">Sklep/hurtownia z koszykiem, kontem klienta i panelem produktów.</p>
+                                <div class="tech-stack" data-dev-only>
+                                                                            <span>PHP</span>
+                                                                            <span>MySQL</span>
+                                                                            <span>JavaScript</span>
+                                                                            <span>RWD</span>
+                                                                    </div>
+                                <p class="developer-note" data-dev-only>Statyczne demo widoku: katalog, produkt, koszyk i panel zarządzania.</p>
+                                                                    <button class="project-card__action" type="button" data-modal-open data-project-src="assets/projects/hurtowniaDemo/index.html" data-project-title="Hurtownia">
+                                        <span data-i18n="actions.viewProject">Zobacz projekt</span>
+                                    </button>
+                                                            </article>
                                             </div>
                 </section>
 
@@ -280,7 +315,7 @@
                                                                             <li data-i18n-job="Łączenie perspektywy technicznej z biznesową w środowisku dużej organizacji.">Łączenie perspektywy technicznej z biznesową w środowisku dużej organizacji.</li>
                                                                     </ul>
                             </article>
-                                                    <article class="timeline-item" data-tech="Jira|Confluence|BPMN|UML">
+                                                    <article class="timeline-item timeline-item--older" data-tech="Jira|Confluence|BPMN|UML" data-experience-older hidden>
                                 <div>
                                     <p class="timeline-item__period">09.2022 - 11.2023</p>
                                     <h3><span data-job-role="Konsultant ds. analizy biznesowo-systemowej / PM">Konsultant ds. analizy biznesowo-systemowej / PM</span> <span>SkyCash Poland</span></h3>
@@ -396,6 +431,15 @@
             <iframe class="project-modal__frame" data-project-frame title="Podgląd projektu" loading="lazy"></iframe>
         </section>
     </div>
+
+    <aside class="cookie-note" data-cookie-note hidden aria-live="polite">
+        <span class="cookie-note__icon" aria-hidden="true"></span>
+        <div class="cookie-note__content">
+            <strong data-i18n="cookie.title">Małe ciasteczko</strong>
+            <p data-i18n="cookie.message">Słodko dziś wyglądasz, więc podrzucam Ci małe ciasteczko. Zostaje tylko lokalnie i pamięta, że nie muszę pokazywać tego okienka drugi raz.</p>
+        </div>
+        <button class="cookie-note__close" type="button" data-cookie-dismiss data-i18n="cookie.dismiss" aria-label="Zamknij informację o ciasteczkach">Mniam</button>
+    </aside>
 
     <script src="assets/js/script.js"></script>
 </body>

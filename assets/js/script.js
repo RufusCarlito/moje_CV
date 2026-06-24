@@ -29,6 +29,9 @@ const translations = {
     "modes.developer": "DEV",
     "sections.diagnostics": "Diagnostyka",
     "sections.weather": "Pogoda",
+    "cookie.title": "Małe ciasteczko",
+    "cookie.message": "Słodko dziś wyglądasz, więc podrzucam Ci małe ciasteczko. Zostaje tylko lokalnie i pamięta, że nie muszę pokazywać tego okienka drugi raz.",
+    "cookie.dismiss": "Mniam",
   },
   en: {
     "profile.role": "Frontend / PHP developer",
@@ -58,6 +61,9 @@ const translations = {
     "modes.developer": "DEV",
     "sections.diagnostics": "Diagnostics",
     "sections.weather": "Weather",
+    "cookie.title": "Tiny cookie",
+    "cookie.message": "You look sweet today, so here is a tiny cookie. It stays local only and remembers I do not need to show this note again.",
+    "cookie.dismiss": "Yum",
   },
   de: {
     "profile.role": "Frontend / PHP-Entwickler",
@@ -87,6 +93,9 @@ const translations = {
     "modes.developer": "DEV",
     "sections.diagnostics": "Diagnose",
     "sections.weather": "Wetter",
+    "cookie.title": "Kleiner Keks",
+    "cookie.message": "Du siehst heute süß aus, also schenke ich dir einen kleinen Keks. Er bleibt nur lokal und merkt sich, dass ich diesen Hinweis nicht noch einmal zeigen muss.",
+    "cookie.dismiss": "Lecker",
   },
 };
 
@@ -152,6 +161,16 @@ const projectDescriptions = {
     pl: "Responsywna strona reklamowa.",
     en: "A responsive advertising page.",
     de: "Eine responsive Werbeseite.",
+  },
+  "Domki": {
+    pl: "Statyczne demo systemu rezerwacji domków z panelem użytkownika i administracją.",
+    en: "A static demo of a cottage booking system with user and admin views.",
+    de: "Eine statische Demo eines Ferienhaus-Buchungssystems mit Nutzer- und Admin-Ansichten.",
+  },
+  "Hurtownia": {
+    pl: "Statyczne demo sklepu/hurtowni z koszykiem, kontem klienta i panelem produktów.",
+    en: "A static demo of a shop/wholesale project with cart, account and product panel.",
+    de: "Eine statische Demo eines Shop/Großhandelsprojekts mit Warenkorb, Konto und Produktpanel.",
   },
 };
 
@@ -315,12 +334,29 @@ function applyLanguage(language) {
     button.classList.toggle("is-active", button.dataset.lang === language);
   });
 
+  syncCvActions(language);
   updateExperienceToggleText();
 }
 
 document.querySelectorAll("[data-lang]").forEach((button) => {
   button.addEventListener("click", () => applyLanguage(button.dataset.lang));
 });
+
+function syncCvActions(language) {
+  document.querySelectorAll("[data-download-cv]").forEach((link) => {
+    const nextHref = link.dataset[`download${language.charAt(0).toUpperCase()}${language.slice(1)}`] || link.dataset.downloadPl || link.getAttribute("href");
+    if (nextHref) {
+      link.setAttribute("href", nextHref);
+    }
+  });
+
+  document.querySelectorAll("[data-print-pdf]").forEach((button) => {
+    const nextPdf = button.dataset[`print${language.charAt(0).toUpperCase()}${language.slice(1)}`] || button.dataset.printPl || button.dataset.printPdf;
+    if (nextPdf) {
+      button.dataset.printPdf = nextPdf;
+    }
+  });
+}
 
 const deviceViewButtons = document.querySelectorAll("[data-device-view]");
 const deviceViewClasses = ["preview-desktop", "preview-tablet", "preview-phone"];
@@ -398,8 +434,10 @@ const audienceButtons = document.querySelectorAll("[data-audience]");
 const skillButtons = document.querySelectorAll("[data-skill-filter]");
 const filterTargets = document.querySelectorAll("[data-tech]");
 const terminalStatus = document.querySelector("[data-terminal-status]");
+const themeToggle = document.querySelector("[data-theme-toggle]");
 let activeSkill = "";
 let terminalTimer = null;
+let themeOverride = false;
 
 const terminalMessages = [
   "rwd: ok | php: render | js: interactive | tests: passing",
@@ -518,12 +556,42 @@ if ("IntersectionObserver" in window) {
 setAudienceMode("recruiter");
 rotateTerminalMessages();
 
+function setTheme(mode, isManual = false) {
+  const isNight = mode === "night";
+  document.body.classList.toggle("theme-night", isNight);
+  document.body.classList.toggle("theme-day", !isNight);
+
+  if (themeToggle) {
+    themeToggle.classList.toggle("is-night", isNight);
+    themeToggle.setAttribute("aria-pressed", String(isNight));
+  }
+
+  if (isManual) {
+    themeOverride = true;
+  }
+}
+
+function setAutoThemeFromClock() {
+  const hour = new Date().getHours();
+  setTheme(hour >= 19 || hour < 7 ? "night" : "day");
+}
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    setTheme(document.body.classList.contains("theme-night") ? "day" : "night", true);
+  });
+}
+
+setAutoThemeFromClock();
+
 const weatherCard = document.querySelector("[data-weather-card]");
 const weatherToggle = document.querySelector("[data-weather-toggle]");
 const weatherPlace = document.querySelector("[data-weather-place]");
 const weatherTemp = document.querySelector("[data-weather-temp]");
+const weatherRange = document.querySelector("[data-weather-range]");
 const weatherMeta = document.querySelector("[data-weather-meta]");
 const weatherForecast = document.querySelector("[data-weather-forecast]");
+const weatherMoon = document.querySelector("[data-weather-moon]");
 
 const warsawWeatherLocation = {
   name: "Warszawa",
@@ -561,15 +629,67 @@ function formatWeatherDay(dateValue) {
   return new Intl.DateTimeFormat("pl-PL", { weekday: "short" }).format(new Date(dateValue));
 }
 
+function getMoonPhase(dateValue) {
+  const cycle = 29.53058867;
+  const referenceNewMoon = Date.UTC(2000, 0, 6, 18, 14);
+  const days = (new Date(dateValue).getTime() - referenceNewMoon) / 86400000;
+  const phase = ((days % cycle) + cycle) % cycle / cycle;
+
+  if (phase < 0.03 || phase > 0.97) {
+    return "new";
+  }
+
+  if (phase > 0.47 && phase < 0.53) {
+    return "full";
+  }
+
+  if ((phase > 0.22 && phase < 0.28) || (phase > 0.72 && phase < 0.78)) {
+    return "quarter";
+  }
+
+  if (phase < 0.22 || phase > 0.78) {
+    return "crescent";
+  }
+
+  return "gibbous";
+}
+
+function getWeatherTime(data) {
+  if (!data.current.is_day) {
+    return "night";
+  }
+
+  const now = new Date(data.current.time);
+  const sunset = new Date(data.daily.sunset[0]);
+  const minutesToSunset = (sunset.getTime() - now.getTime()) / 60000;
+
+  return minutesToSunset <= 90 && minutesToSunset >= -20 ? "sunset" : "day";
+}
+
 function renderWeather(data, locationName) {
   const currentTemp = Math.round(data.current.temperature_2m);
+  const dayTemp = Math.round(data.daily.temperature_2m_max[0]);
+  const nightTemp = Math.round(data.daily.temperature_2m_min[0]);
   const [condition, label] = getWeatherDetails(data.current.weather_code);
+  const weatherTime = getWeatherTime(data);
+  const phase = getMoonPhase(data.current.time);
 
   weatherCard.dataset.weatherCondition = condition;
+  weatherCard.dataset.weatherTime = weatherTime;
+  weatherCard.dataset.moonPhase = phase;
   weatherCard.classList.remove("weather-card--loading");
   weatherPlace.textContent = locationName;
   weatherTemp.textContent = `${currentTemp}°`;
+  weatherRange.textContent = weatherTime === "night" ? `noc ${nightTemp}° / dzień ${dayTemp}°` : `dzień ${dayTemp}° / noc ${nightTemp}°`;
   weatherMeta.textContent = `${label}. Odczuwalnie ${Math.round(data.current.apparent_temperature)}°, wiatr ${Math.round(data.current.wind_speed_10m)} km/h.`;
+
+  if (weatherMoon) {
+    weatherMoon.setAttribute("aria-label", `Faza księżyca: ${phase}`);
+  }
+
+  if (!themeOverride) {
+    setTheme(weatherTime === "night" ? "night" : "day");
+  }
 
   weatherForecast.innerHTML = data.daily.time.slice(0, 7).map((day, index) => {
     const [, dayLabel, icon] = getWeatherDetails(data.daily.weather_code[index]);
@@ -588,8 +708,8 @@ async function loadWeather(location) {
   const params = new URLSearchParams({
     latitude: String(location.latitude),
     longitude: String(location.longitude),
-    current: "temperature_2m,apparent_temperature,weather_code,wind_speed_10m",
-    daily: "weather_code,temperature_2m_max,temperature_2m_min",
+    current: "temperature_2m,apparent_temperature,weather_code,wind_speed_10m,is_day",
+    daily: "weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset",
     timezone: "auto",
     forecast_days: "7",
   });
@@ -638,6 +758,56 @@ if (weatherToggle && weatherForecast) {
 }
 
 loadLocalWeather();
+
+const cookieNote = document.querySelector("[data-cookie-note]");
+const cookieDismiss = document.querySelector("[data-cookie-dismiss]");
+const cookieNoteStorageKey = "krystianCvCookieNoteDismissed";
+
+function showCookieNote() {
+  if (!cookieNote) {
+    return;
+  }
+
+  cookieNote.hidden = false;
+  window.requestAnimationFrame(() => {
+    cookieNote.classList.add("is-visible");
+  });
+}
+
+function hideCookieNote(rememberChoice = false) {
+  if (!cookieNote) {
+    return;
+  }
+
+  cookieNote.classList.remove("is-visible");
+
+  window.setTimeout(() => {
+    cookieNote.hidden = true;
+  }, 220);
+
+  if (rememberChoice) {
+    window.localStorage.setItem(cookieNoteStorageKey, "1");
+  }
+}
+
+function initCookieNote() {
+  if (!cookieNote) {
+    return;
+  }
+
+  if (window.localStorage.getItem(cookieNoteStorageKey) === "1") {
+    cookieNote.hidden = true;
+    return;
+  }
+
+  window.setTimeout(showCookieNote, 1600);
+}
+
+if (cookieDismiss) {
+  cookieDismiss.addEventListener("click", () => hideCookieNote(true));
+}
+
+initCookieNote();
 
 document.querySelectorAll("[data-print-pdf]").forEach((button) => {
   button.addEventListener("click", () => {

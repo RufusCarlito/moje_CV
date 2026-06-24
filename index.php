@@ -50,6 +50,22 @@ $projects = [
         'tech' => ['HTML5', 'CSS3', 'RWD'],
         'note' => 'Osobna strona z naciskiem na layout mobilny i statyczne assety.',
     ],
+    [
+        'name' => 'Domki',
+        'description' => 'System rezerwacji domków z panelem użytkownika i administracją.',
+        'url' => 'assets/projects/domkiDemo/index.html',
+        'mode' => 'modal',
+        'tech' => ['PHP', 'MySQL', 'JavaScript', 'RWD'],
+        'note' => 'Statyczne demo widoku: rezerwacje, konta, panel admina i dane w PHP/MySQL.',
+    ],
+    [
+        'name' => 'Hurtownia',
+        'description' => 'Sklep/hurtownia z koszykiem, kontem klienta i panelem produktów.',
+        'url' => 'assets/projects/hurtowniaDemo/index.html',
+        'mode' => 'modal',
+        'tech' => ['PHP', 'MySQL', 'JavaScript', 'RWD'],
+        'note' => 'Statyczne demo widoku: katalog, produkt, koszyk i panel zarządzania.',
+    ],
 ];
 
 $jobs = [
@@ -121,8 +137,12 @@ $education = [
     ['degree' => 'Lotnictwo i kosmonautyka', 'school' => 'Wojskowa Akademia Techniczna', 'period' => 'October 2015 - Jul 2016'],
 ];
 
-$downloadFiles = glob(__DIR__ . '/assets/downloads/*.{pdf,doc,docx}', GLOB_BRACE);
-$downloadPath = $downloadFiles ? 'assets/downloads/' . basename($downloadFiles[0]) : null;
+$downloadPaths = [
+    'pl' => is_file(__DIR__ . '/assets/downloads/K.Romsicki_cv_pl.pdf') ? 'assets/downloads/K.Romsicki_cv_pl.pdf' : null,
+    'en' => is_file(__DIR__ . '/assets/downloads/K.Romsicki_cv_EN_1.pdf') ? 'assets/downloads/K.Romsicki_cv_EN_1.pdf' : null,
+];
+$downloadPath = $downloadPaths['pl'] ?? $downloadPaths['en'];
+$downloadPathEn = $downloadPaths['en'] ?? $downloadPath;
 
 function e(string $value): string
 {
@@ -189,6 +209,9 @@ function techAttr(array $items): string
                 <button type="button" data-audience="developer" data-i18n="modes.developer">DEV</button>
             </div>
             <button class="developer-toggle" type="button" data-developer-toggle aria-pressed="false" aria-label="Włącz tryb developerski">&lt;/&gt;</button>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="Przełącz tryb dnia i nocy" aria-pressed="false">
+                <span class="theme-toggle__thumb"></span>
+            </button>
             <div class="language-switcher" aria-label="Wybór języka">
                 <button type="button" class="is-active" data-lang="pl">PL</button>
                 <button type="button" data-lang="en">EN</button>
@@ -208,8 +231,8 @@ function techAttr(array $items): string
                 <p class="lead" data-i18n="profile.summary"><?= e($profile['summary']); ?></p>
                 <div class="hero__actions" aria-label="Główne akcje">
                     <?php if ($downloadPath): ?>
-                        <a class="button button--primary" href="<?= e($downloadPath); ?>" download data-i18n="actions.download">Pobierz CV</a>
-                        <button class="button button--ghost" type="button" data-print-pdf="<?= e($downloadPath); ?>" data-i18n="actions.print">Drukuj CV</button>
+                        <a class="button button--primary" href="<?= e($downloadPath); ?>" download data-download-cv data-download-pl="<?= e($downloadPath); ?>" data-download-en="<?= e($downloadPathEn); ?>" data-download-de="<?= e($downloadPathEn); ?>" data-i18n="actions.download">Pobierz CV</a>
+                        <button class="button button--ghost" type="button" data-print-pdf="<?= e($downloadPath); ?>" data-print-pl="<?= e($downloadPath); ?>" data-print-en="<?= e($downloadPathEn); ?>" data-print-de="<?= e($downloadPathEn); ?>" data-i18n="actions.print">Drukuj CV</button>
                     <?php else: ?>
                         <span class="button button--disabled" title="Dodaj plik PDF/DOC/DOCX do assets/downloads" data-i18n="actions.download">Pobierz CV</span>
                     <?php endif; ?>
@@ -295,10 +318,14 @@ function techAttr(array $items): string
                             <span class="weather-card__label" data-i18n="sections.weather">Pogoda</span>
                             <strong data-weather-place>Warszawa</strong>
                         </span>
-                        <span class="weather-card__temp" data-weather-temp>--°</span>
+                        <span class="weather-card__temps">
+                            <span class="weather-card__temp" data-weather-temp>--°</span>
+                            <span class="weather-card__range" data-weather-range>--° / --°</span>
+                        </span>
                     </button>
                     <div class="weather-scene" aria-hidden="true">
                         <span class="weather-sun"></span>
+                        <span class="weather-moon" data-weather-moon></span>
                         <span class="weather-cloud weather-cloud--one"></span>
                         <span class="weather-cloud weather-cloud--two"></span>
                         <span class="weather-rain weather-rain--one"></span>
@@ -362,7 +389,7 @@ function techAttr(array $items): string
                     </div>
                     <div class="timeline">
                         <?php foreach ($jobs as $index => $job): ?>
-                            <article class="timeline-item<?= $index >= 3 ? ' timeline-item--older' : ''; ?>" data-tech="<?= techAttr($job['tech']); ?>"<?= $index >= 3 ? ' data-experience-older hidden' : ''; ?>>
+                            <article class="timeline-item<?= $index >= 2 ? ' timeline-item--older' : ''; ?>" data-tech="<?= techAttr($job['tech']); ?>"<?= $index >= 2 ? ' data-experience-older hidden' : ''; ?>>
                                 <div>
                                     <p class="timeline-item__period"><?= e($job['period']); ?></p>
                                     <h3><span data-job-role="<?= e($job['role']); ?>"><?= e($job['role']); ?></span> <span><?= e($job['company']); ?></span></h3>
@@ -424,6 +451,15 @@ function techAttr(array $items): string
             <iframe class="project-modal__frame" data-project-frame title="Podgląd projektu" loading="lazy"></iframe>
         </section>
     </div>
+
+    <aside class="cookie-note" data-cookie-note hidden aria-live="polite">
+        <span class="cookie-note__icon" aria-hidden="true"></span>
+        <div class="cookie-note__content">
+            <strong data-i18n="cookie.title">Małe ciasteczko</strong>
+            <p data-i18n="cookie.message">Słodko dziś wyglądasz, więc podrzucam Ci małe ciasteczko. Zostaje tylko lokalnie i pamięta, że nie muszę pokazywać tego okienka drugi raz.</p>
+        </div>
+        <button class="cookie-note__close" type="button" data-cookie-dismiss data-i18n="cookie.dismiss" aria-label="Zamknij informację o ciasteczkach">Mniam</button>
+    </aside>
 
     <script src="assets/js/script.js"></script>
 </body>
