@@ -2,8 +2,8 @@ document.documentElement.classList.add("is-ready");
 
 const translations = {
   pl: {
-    "profile.role": "Frontend / PHP developer",
-    "profile.summary": "Tworzę proste, responsywne interfejsy i lubię, gdy kod jest czytelny także po kilku tygodniach. Rozwijam się w PHP, JavaScript i pracy z realnymi narzędziami webowymi.",
+    "profile.role": "IT Operations / Business Analysis specialist",
+    "profile.summary": "Łączę IT operations, analizę biznesową i automatyzację procesów. Buduję procesy IT od podstaw, koordynuję integracje systemów i wspieram decyzje biznesowe analizą danych.",
     "profile.location": "Warszawa, Polska",
     "actions.download": "Pobierz CV",
     "actions.print": "Drukuj CV",
@@ -34,8 +34,8 @@ const translations = {
     "cookie.dismiss": "Mniam",
   },
   en: {
-    "profile.role": "Frontend / PHP developer",
-    "profile.summary": "I build simple, responsive interfaces and I like code that still reads clearly weeks later. I keep growing in PHP, JavaScript and practical web tooling.",
+    "profile.role": "IT Operations / Business Analysis specialist",
+    "profile.summary": "IT Operations and Business Analysis specialist with over 5 years of experience delivering technology solutions across IT operations, software development and enterprise business environments.",
     "profile.location": "Warsaw, Poland",
     "actions.download": "Download CV",
     "actions.print": "Print CV",
@@ -50,9 +50,9 @@ const translations = {
     "sections.experience": "Experience",
     "sections.education": "Education",
     "sections.focusEyebrow": "In short",
-    "sections.focus": "How I work with code",
+    "sections.focus": "Core competencies",
     "sections.nowEyebrow": "Now",
-    "sections.now": "What I look for in code",
+    "sections.now": "What I focus on",
     "experience.showOlder": "Show older experience",
     "experience.hideOlder": "Hide older experience",
     "contact.phone": "Phone",
@@ -66,8 +66,8 @@ const translations = {
     "cookie.dismiss": "Yum",
   },
   de: {
-    "profile.role": "Frontend / PHP-Entwickler",
-    "profile.summary": "Ich erstelle einfache, responsive Oberflächen und mag Code, der auch nach Wochen gut lesbar bleibt. Ich entwickle mich weiter in PHP, JavaScript und praktischen Web-Tools.",
+    "profile.role": "Spezialist für IT Operations / Business Analysis",
+    "profile.summary": "Spezialist für IT Operations und Business Analysis mit mehr als 5 Jahren Erfahrung in Technologielösungen für IT-Betrieb, Softwareentwicklung und Enterprise-Umgebungen.",
     "profile.location": "Warschau, Polen",
     "actions.download": "Lebenslauf herunterladen",
     "actions.print": "Lebenslauf drucken",
@@ -82,9 +82,9 @@ const translations = {
     "sections.experience": "Erfahrung",
     "sections.education": "Ausbildung",
     "sections.focusEyebrow": "Kurz gesagt",
-    "sections.focus": "Wie ich mit Code arbeite",
+    "sections.focus": "Kernkompetenzen",
     "sections.nowEyebrow": "Aktuell",
-    "sections.now": "Was ich im Code suche",
+    "sections.now": "Worauf ich mich konzentriere",
     "experience.showOlder": "Ältere Erfahrung anzeigen",
     "experience.hideOlder": "Ältere Erfahrung ausblenden",
     "contact.phone": "Telefon",
@@ -101,47 +101,47 @@ const translations = {
 
 const listTranslations = {
   soft: {
-    pl: ["Komunikatywność", "Samodzielność", "Dobra organizacja pracy", "Praca zespołowa", "Analityczne myślenie"],
-    en: ["Communication", "Independence", "Good work organization", "Teamwork", "Analytical thinking"],
-    de: ["Kommunikation", "Selbstständigkeit", "Gute Arbeitsorganisation", "Teamarbeit", "Analytisches Denken"],
+    pl: ["Asertywność", "Komunikacja", "Praca zespołowa", "Analityczne myślenie", "Organizacja", "Samodyscyplina"],
+    en: ["Assertiveness", "Communication", "Teamwork", "Analytical mindset", "Organization", "Self-discipline"],
+    de: ["Durchsetzungsfähigkeit", "Kommunikation", "Teamarbeit", "Analytisches Denken", "Organisation", "Selbstdisziplin"],
   },
   languages: {
-    pl: ["Angielski - komunikatywny"],
-    en: ["English - communicative"],
-    de: ["Englisch - kommunikativ"],
+    pl: ["Angielski - B2", "Hiszpański - A1", "Rosyjski - A1", "Niemiecki - początkujący"],
+    en: ["English - B2 professional working proficiency", "Spanish - A1 basic", "Russian - A1 basic", "German - beginner, currently learning"],
+    de: ["Englisch - B2, berufliche Arbeitskompetenz", "Spanisch - A1 Grundkenntnisse", "Russisch - A1 Grundkenntnisse", "Deutsch - Anfänger, derzeit im Aufbau"],
   },
   focus: {
     pl: [
-      "Frontend z naciskiem na przejrzysty HTML, CSS i JavaScript.",
-      "Podstawy backendu: PHP, Python, MySQL i praca z Magento 2.",
-      "Swoboda w narzędziach zespołowych: Git, Jira, Docker, Postman.",
+      "IT operations i wsparcie L1/L2 z naciskiem na stabilne procesy i standardy.",
+      "Analiza biznesowa, BPMN/UML i praca z interesariuszami w środowisku Agile/Scrum.",
+      "Automatyzacja procesów w Pythonie i PowerShellu oraz integracje systemów enterprise.",
     ],
     en: [
-      "Frontend focused on clear HTML, CSS and JavaScript.",
-      "Backend basics: PHP, Python, MySQL and working with Magento 2.",
-      "Comfortable with team tools: Git, Jira, Docker, Postman.",
+      "IT operations and L1/L2 support focused on stable processes and technical standards.",
+      "Business analysis, BPMN/UML and stakeholder work in Agile/Scrum environments.",
+      "Process automation in Python and PowerShell plus enterprise system integrations.",
     ],
     de: [
-      "Frontend mit Fokus auf klares HTML, CSS und JavaScript.",
-      "Backend-Grundlagen: PHP, Python, MySQL und Arbeit mit Magento 2.",
-      "Sicher im Umgang mit Team-Tools: Git, Jira, Docker, Postman.",
+      "IT Operations und L1/L2-Support mit Fokus auf stabile Prozesse und technische Standards.",
+      "Business Analysis, BPMN/UML und Stakeholder-Arbeit in Agile/Scrum-Umgebungen.",
+      "Prozessautomatisierung mit Python und PowerShell sowie Enterprise-Systemintegrationen.",
     ],
   },
   now: {
     pl: [
-      "Najbardziej interesują mnie projekty webowe, w których mogę łączyć frontend z PHP i bazami danych.",
-      "Szukam zadań, które wymagają myślenia o użytkowniku, czytelnym kodzie i praktycznym dowożeniu zmian.",
-      "Chcę rozwijać się bliżej zespołów produktowych, gdzie analiza wymagań szybko przechodzi w działający interfejs.",
+      "Najbardziej interesują mnie role łączące IT operations, analizę biznesową i automatyzację procesów.",
+      "Szukam zadań, w których wymagania biznesowe szybko przechodzą w stabilne procesy, integracje lub narzędzia.",
+      "Chcę rozwijać rozwiązania, które redukują pracę manualną i poprawiają jakość decyzji operacyjnych.",
     ],
     en: [
-      "I am most interested in web projects where I can combine frontend work with PHP and databases.",
-      "I look for tasks that require user thinking, readable code and practical delivery.",
-      "I want to grow closer to product teams, where requirements quickly become working interfaces.",
+      "I am most interested in roles combining IT operations, business analysis and process automation.",
+      "I look for work where business requirements quickly become stable processes, integrations or tools.",
+      "I want to develop solutions that reduce manual work and improve operational decision-making.",
     ],
     de: [
-      "Am meisten interessieren mich Webprojekte, in denen ich Frontend-Arbeit mit PHP und Datenbanken verbinden kann.",
-      "Ich suche Aufgaben, die Nutzerdenken, lesbaren Code und praktische Umsetzung verlangen.",
-      "Ich möchte näher an Produktteams arbeiten, wo Anforderungen schnell zu funktionierenden Oberflächen werden.",
+      "Am meisten interessieren mich Rollen, die IT Operations, Business Analysis und Prozessautomatisierung verbinden.",
+      "Ich suche Aufgaben, bei denen Business-Anforderungen schnell zu stabilen Prozessen, Integrationen oder Tools werden.",
+      "Ich möchte Lösungen entwickeln, die manuelle Arbeit reduzieren und operative Entscheidungen verbessern.",
     ],
   },
 };
@@ -175,96 +175,152 @@ const projectDescriptions = {
 };
 
 const jobTranslations = {
-  "Utrzymanie systemów, sieci i środowiska firmowego z naciskiem na stabilność oraz bezpieczeństwo.": {
-    en: "Maintaining systems, networks and the company environment with a focus on stability and security.",
-    de: "Betreuung von Systemen, Netzwerken und Unternehmensumgebung mit Fokus auf Stabilität und Sicherheit.",
+  "Budowanie lokalnych operacji IT, procesów i standardów technicznych dla nowo utworzonego szwajcarskiego oddziału w zgodzie z politykami IT i cyberbezpieczeństwa grupy.": {
+    en: "Joined a newly established Swiss branch as the first IT Specialist, building local IT operations, processes and technical standards from the ground up while ensuring alignment with corporate IT and cybersecurity policies.",
+    de: "Aufbau lokaler IT-Operations, Prozesse und technischer Standards für eine neu gegründete Schweizer Niederlassung in Abstimmung mit den Corporate-IT- und Cybersecurity-Richtlinien.",
   },
-  "Diagnozowanie problemów IT i wdrażanie praktycznych usprawnień dla użytkowników.": {
-    en: "Diagnosing IT issues and implementing practical improvements for users.",
-    de: "Diagnose von IT-Problemen und Umsetzung praktischer Verbesserungen für Nutzer.",
+  "Projektowanie i wdrażanie procesów operacyjnych IT, w tym onboardingu i offboardingu pracowników, cyklu życia sprzętu, przygotowania stacji roboczych i administracji lokalną stroną.": {
+    en: "Designed and implemented key IT operational processes, including employee onboarding and offboarding, hardware lifecycle management, workstation provisioning and local website administration.",
+    de: "Konzeption und Umsetzung zentraler IT-Betriebsprozesse, darunter Employee Onboarding und Offboarding, Hardware-Lifecycle-Management, Workstation-Provisioning und lokale Website-Administration.",
   },
-  "Praca z budżetami IT, analizą danych i rekomendacjami dla projektów technologicznych.": {
-    en: "Working with IT budgets, data analysis and recommendations for technology projects.",
-    de: "Arbeit mit IT-Budgets, Datenanalyse und Empfehlungen für Technologieprojekte.",
+  "Tworzenie automatyzacji w Pythonie i PowerShellu, w tym przepływów przetwarzania danych oraz zadań zarządzania endpointami przez Microsoft Configuration Manager.": {
+    en: "Developed automation solutions using Python and PowerShell, including data processing workflows and endpoint management tasks through Microsoft Configuration Manager, reducing manual work and improving operational efficiency.",
+    de: "Entwicklung von Automatisierungslösungen mit Python und PowerShell, darunter Workflows zur Datenverarbeitung und Endpoint-Management-Aufgaben über Microsoft Configuration Manager.",
   },
-  "Łączenie perspektywy technicznej z biznesową w środowisku dużej organizacji.": {
-    en: "Combining technical and business perspectives in a large organization.",
-    de: "Verbindung technischer und geschäftlicher Perspektiven in einer großen Organisation.",
+  "Koordynacja integracji platformy Amphora z tenantem Microsoft ORLEN we współpracy z zespołami korporacyjnymi i zewnętrznymi dostawcami.": {
+    en: "Coordinated the integration of the Amphora commodity trading platform with the ORLEN Microsoft tenant, collaborating with corporate IT teams and external vendors.",
+    de: "Koordination der Integration der Commodity-Trading-Plattform Amphora mit dem ORLEN Microsoft Tenant in Zusammenarbeit mit Corporate-IT-Teams und externen Anbietern.",
   },
-  "Analiza wymagań, diagramy BPMN i opisy procesów dla systemów miejskich oraz parkingowych.": {
-    en: "Requirements analysis, BPMN diagrams and process descriptions for city and parking systems.",
-    de: "Anforderungsanalyse, BPMN-Diagramme und Prozessbeschreibungen für Stadt- und Parksysteme.",
+  "Wsparcie L1/L2, administracja Microsoft 365, Active Directory i Microsoft Entra ID oraz koordynacja rozwiązywania złożonych problemów technicznych.": {
+    en: "Provided L1/L2 IT support, administering Microsoft 365, Active Directory and Microsoft Entra ID while troubleshooting complex technical issues and coordinating resolution with infrastructure teams.",
+    de: "L1/L2-IT-Support, Administration von Microsoft 365, Active Directory und Microsoft Entra ID sowie Koordination der Lösung komplexer technischer Probleme.",
   },
-  "Przekładanie potrzeb biznesu na konkretne zadania dla zespołów technicznych.": {
-    en: "Translating business needs into clear tasks for technical teams.",
-    de: "Übersetzung geschäftlicher Anforderungen in klare Aufgaben für technische Teams.",
+  "Zarządzanie lokalnymi wydatkami operacyjnymi IT, planowanie zakupów technologicznych i kontrola zgodności z budżetem.": {
+    en: "Managed local IT operational expenditures, planned technology purchases and ensured compliance with allocated budgets.",
+    de: "Steuerung lokaler IT-Betriebsausgaben, Planung von Technologieeinkäufen und Sicherstellung der Einhaltung zugewiesener Budgets.",
   },
-  "Współtworzenie architektury backendowej dla serwisów o dużym natężeniu ruchu.": {
-    en: "Co-creating backend architecture for high-traffic services.",
-    de: "Mitgestaltung der Backend-Architektur für stark frequentierte Services.",
+  "Monitorowanie wyników finansowych departamentów IT i portfeli projektów przekraczających 1 mld PLN, w tym analiza wykonania budżetu, prognoz, odchyleń od planu i celów MBO.": {
+    en: "Monitored financial performance of IT departments and project portfolios exceeding PLN 1 billion, analysing budget execution, forecasts, plan deviations and management objectives to support executive decision-making.",
+    de: "Überwachung der finanziellen Performance von IT-Abteilungen und Projektportfolios über 1 Mrd. PLN, einschließlich Budgetausführung, Forecasts, Planabweichungen und Managementzielen.",
   },
-  "Implementacja, testowanie i dokumentowanie zmian w logice kodu.": {
-    en: "Implementing, testing and documenting changes in code logic.",
-    de: "Implementierung, Test und Dokumentation von Änderungen in der Codelogik.",
+  "Przygotowywanie raportów zarządczych, prognoz i dashboardów wspierających decyzje strategiczne dla około 300 projektów IT rocznie.": {
+    en: "Prepared executive reports, forecasts and dashboards supporting strategic decision-making for approximately 300 IT projects annually.",
+    de: "Erstellung von Managementberichten, Forecasts und Dashboards zur Unterstützung strategischer Entscheidungen für rund 300 IT-Projekte jährlich.",
   },
-  "Praca z frontendem, backendem i UX/UI przy projektach wdrożeniowych.": {
-    en: "Working across frontend, backend and UX/UI in implementation projects.",
-    de: "Arbeit an Frontend, Backend und UX/UI in Umsetzungsprojekten.",
+  "Współpraca z kierownikami projektów i interesariuszami biznesowymi przy analizie KPI projektów, budżetów i alokacji zasobów.": {
+    en: "Worked closely with project managers and business stakeholders, analysing project KPIs, budgets and resource allocation.",
+    de: "Enge Zusammenarbeit mit Projektleitern und Business-Stakeholdern bei der Analyse von Projekt-KPIs, Budgets und Ressourcenzuweisung.",
   },
-  "Projektowanie, implementacja i testowanie zmian w aplikacjach webowych.": {
-    en: "Designing, implementing and testing changes in web applications.",
-    de: "Design, Implementierung und Test von Änderungen in Webanwendungen.",
+  "Udział w analizach biznesowych wspierających decyzje strategiczne i operacyjne w projekcie B+R RPLD.01.02.02-10-0080/21 dotyczącym autonomicznego środowiska AI dla parkingu miejskiego.": {
+    en: "Participated in business analyses supporting strategic and operational decision-making in the EU-funded R&D project RPLD.01.02.02-10-0080/21 focused on an autonomous AI-based environment for urban parking.",
+    de: "Mitwirkung an Business-Analysen zur Unterstützung strategischer und operativer Entscheidungen im EU-geförderten F&E-Projekt RPLD.01.02.02-10-0080/21 für ein autonomes KI-basiertes Umfeld im urbanen Parken.",
   },
-  "Projektowanie funkcjonalności elektronicznych dla pojazdów EV.": {
-    en: "Designing electronic functionality for EV vehicles.",
-    de: "Entwicklung elektronischer Funktionen für EV-Fahrzeuge.",
+  "Modelowanie procesów biznesowych w BPMN i UML oraz przygotowywanie specyfikacji funkcjonalnych dla zespołów developerskich.": {
+    en: "Modelled business processes using BPMN and UML, preparing functional specifications for development teams.",
+    de: "Modellierung von Geschäftsprozessen mit BPMN und UML sowie Erstellung funktionaler Spezifikationen für Entwicklungsteams.",
   },
-  "Dokumentacja techniczno-użytkowa i wsparcie rozwiązań dla bezpieczeństwa użytkownika.": {
-    en: "Technical and user documentation plus support for user-safety solutions.",
-    de: "Technische und nutzerbezogene Dokumentation sowie Unterstützung von Lösungen für die Nutzersicherheit.",
+  "Tworzenie wireframeów i makiet UI w Figmie na potrzeby projektowania produktu i warsztatów z interesariuszami.": {
+    en: "Created wireframes and UI mockups in Figma, supporting product design and stakeholder workshops.",
+    de: "Erstellung von Wireframes und UI-Mockups in Figma zur Unterstützung von Produktdesign und Stakeholder-Workshops.",
+  },
+  "Współpraca z developerami, testerami i product ownerami w środowisku Agile/Scrum z użyciem Jira i Confluence.": {
+    en: "Collaborated with developers, testers and product owners in an Agile/Scrum environment using Jira and Confluence.",
+    de: "Zusammenarbeit mit Entwicklern, Testern und Product Ownern in einer Agile/Scrum-Umgebung mit Jira und Confluence.",
+  },
+  "Rozwój i utrzymanie rozwiązań backendowych w PHP, MySQL i Dockerze dla platform webowych o dużym ruchu.": {
+    en: "Developed and maintained backend solutions using PHP, MySQL and Docker for high-traffic web platforms.",
+    de: "Entwicklung und Wartung von Backend-Lösungen mit PHP, MySQL und Docker für stark frequentierte Webplattformen.",
+  },
+  "Implementacja nowych funkcji, rozwiązywanie problemów produkcyjnych i udział w code review z użyciem GitLab.": {
+    en: "Implemented new features, resolved production issues and participated in code reviews using GitLab.",
+    de: "Implementierung neuer Funktionen, Behebung von Produktionsproblemen und Teilnahme an Code Reviews mit GitLab.",
+  },
+  "Współpraca z frontend developerami, QA i product ownerami w środowisku Agile/Scrum.": {
+    en: "Collaborated with frontend developers, QA engineers and product owners in an Agile/Scrum environment.",
+    de: "Zusammenarbeit mit Frontend-Entwicklern, QA Engineers und Product Ownern in einer Agile/Scrum-Umgebung.",
+  },
+  "Tworzenie responsywnych stron internetowych i szablonów e-mail w HTML5, CSS3, SCSS, JavaScript i jQuery.": {
+    en: "Developed responsive websites and email templates using HTML5, CSS3, SCSS, JavaScript and jQuery.",
+    de: "Entwicklung responsiver Websites und E-Mail-Templates mit HTML5, CSS3, SCSS, JavaScript und jQuery.",
+  },
+  "Wdrażanie projektów z Adobe XD do kodu gotowego do produkcji.": {
+    en: "Implemented designs from Adobe XD into production-ready code.",
+    de: "Umsetzung von Designs aus Adobe XD in produktionsreifen Code.",
+  },
+  "Współpraca z projektantami UX/UI i backend developerami z użyciem Git oraz metodyk Agile.": {
+    en: "Collaborated with UX/UI designers and backend developers using Git and Agile methodologies.",
+    de: "Zusammenarbeit mit UX/UI-Designern und Backend-Entwicklern mit Git und agilen Methoden.",
+  },
+  "Projektowanie i wykonywanie manualnych scenariuszy testów funkcjonalnych, end-to-end i regresyjnych.": {
+    en: "Designed and executed manual functional, end-to-end and regression test scenarios.",
+    de: "Konzeption und Durchführung manueller funktionaler, End-to-End- und Regressionstest-Szenarien.",
+  },
+  "Zgłaszanie i śledzenie defektów w Jira we współpracy z zespołami developerskimi.": {
+    en: "Reported and tracked software defects using Jira while cooperating with development teams.",
+    de: "Meldung und Nachverfolgung von Softwarefehlern in Jira in Zusammenarbeit mit Entwicklungsteams.",
+  },
+  "Weryfikacja wydań oprogramowania w systemach bankowości korporacyjnej i udział w walidacji produkcyjnej.": {
+    en: "Verified software releases in corporate banking systems and participated in production validation.",
+    de: "Verifizierung von Software-Releases in Corporate-Banking-Systemen und Teilnahme an der Produktionsvalidierung.",
+  },
+  "Projektowanie funkcjonalności elektronicznych dla pojazdów elektrycznych EV.": {
+    en: "Designed electronic functionality for electric vehicles.",
+    de: "Entwicklung elektronischer Funktionen für Elektrofahrzeuge.",
+  },
+  "Rozwój elektronicznych funkcji bezpieczeństwa, rysunków technicznych i procedur bezpieczeństwa dla urządzeń transportu osobistego.": {
+    en: "Developed electronic safety features, technical drawings and safety procedures for personal transport devices.",
+    de: "Entwicklung elektronischer Sicherheitsfunktionen, technischer Zeichnungen und Sicherheitsverfahren für Personal-Transportgeräte.",
+  },
+  "Prowadzenie prac B+R nad nowymi rozwiązaniami wraz z pełną dokumentacją techniczną i użytkową.": {
+    en: "Conducted R&D of new solutions with full technical and user documentation.",
+    de: "Durchführung von F&E-Arbeiten an neuen Lösungen mit vollständiger technischer und Nutzerdokumentation.",
   },
 };
 
 const jobRoleTranslations = {
   "Specjalista IT": {
-    en: "IT specialist",
+    en: "IT Specialist",
     de: "IT-Spezialist",
   },
-  "Specjalista ds. kontroli biznesowej IT": {
-    en: "IT business controlling specialist",
-    de: "Spezialist für IT-Business-Controlling",
+  "Młodszy specjalista ds. kontrolingu biznesowego IT": {
+    en: "IT Business Control Junior Specialist",
+    de: "Junior Specialist IT Business Controlling",
   },
   "Konsultant ds. analizy biznesowo-systemowej / PM": {
-    en: "Business-system analysis consultant / PM",
+    en: "Business-System Analysis Consultant / PM",
     de: "Berater für Geschäfts- und Systemanalyse / PM",
   },
-  "Backend developer": {
-    en: "Backend developer",
+  "Backend developer B2B": {
+    en: "B2B Backend Developer",
     de: "Backend-Entwickler",
   },
   "Fullstack developer": {
-    en: "Fullstack developer",
+    en: "Fullstack Developer",
     de: "Fullstack-Entwickler",
   },
+  "Tester manualny": {
+    en: "Manual Tester",
+    de: "Manueller Tester",
+  },
   "Stażysta / specjalista elektronik": {
-    en: "Intern / electronics specialist",
+    en: "Intern / Electronics Specialist",
     de: "Praktikant / Elektronikspezialist",
   },
 };
 
 const educationTranslations = {
   degree: {
-    "Filozofia": {
-      en: "Philosophy",
-      de: "Philosophie",
+    "Filozofia, studia magisterskie - ukończony tok studiów": {
+      en: "Philosophy, master's degree coursework completed",
+      de: "Philosophie, Masterstudium mit abgeschlossenem Studienverlauf",
     },
-    "Licencjat": {
-      en: "Bachelor degree",
-      de: "Bachelorabschluss",
+    "Zarządzanie lotnictwem, licencjat": {
+      en: "Aviation Management, bachelor's degree",
+      de: "Aviation Management, Bachelorabschluss",
     },
     "Lotnictwo i kosmonautyka": {
-      en: "Aerospace engineering",
-      de: "Luft- und Raumfahrttechnik",
+      en: "Aeronautical Engineering",
+      de: "Luftfahrttechnik",
     },
   },
   school: {

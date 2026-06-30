@@ -36,8 +36,8 @@ assert.ok(html.includes("data-cookie-note"), "page should render the cookie note
 assert.ok(html.includes("data-cookie-dismiss"), "cookie note should include a dismiss action");
 assert.ok(js.includes("function applySkillFilter"), "skill filtering should be handled in JavaScript");
 assert.ok(html.includes('data-download-pl="assets/downloads/K.Romsicki_cv_pl.pdf"'), "download button should keep the Polish CV path");
-assert.ok(html.includes('data-download-en="assets/downloads/K.Romsicki_cv_EN_1.pdf"'), "download button should expose the English CV path");
-assert.ok(html.includes('data-print-en="assets/downloads/K.Romsicki_cv_EN_1.pdf"'), "print button should expose the English CV path");
+assert.ok(html.includes('data-download-en="assets/downloads/K.Romsicki_cv_EN.pdf"'), "download button should expose the English CV path");
+assert.ok(html.includes('data-print-en="assets/downloads/K.Romsicki_cv_EN.pdf"'), "print button should expose the English CV path");
 assert.ok(js.includes("function syncCvActions"), "language switching should synchronize CV download actions");
 assert.ok(js.includes("link.dataset[`download${language.charAt(0).toUpperCase()}${language.slice(1)}`]"), "download link should react to current language");
 assert.ok(js.includes("button.dataset[`print${language.charAt(0).toUpperCase()}${language.slice(1)}`]"), "print action should react to current language");

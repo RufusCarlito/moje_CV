@@ -1,28 +1,28 @@
 <?php
 $profile = [
     'name' => 'Krystian Romsicki',
-    'role' => 'Frontend / PHP developer',
+    'role' => 'IT Operations / Business Analysis specialist',
     'location' => 'Warszawa, Polska',
-    'phone' => '+48 797 951 075',
+    'phone' => '+41 77 291 86 63',
     'email' => 'krystian.romsicki@gmail.com',
     'github' => 'https://github.com/RufusCarlito',
     'photo' => 'assets/img/profile.png',
-    'summary' => 'Tworzę proste, responsywne interfejsy i lubię, gdy kod jest czytelny także po kilku tygodniach. Rozwijam się w PHP, JavaScript i pracy z realnymi narzędziami webowymi.',
+    'summary' => 'Łączę IT operations, analizę biznesową i automatyzację procesów. Buduję procesy IT od podstaw, koordynuję integracje systemów i wspieram decyzje biznesowe analizą danych.',
 ];
 
-$techSkills = ['HTML5', 'CSS3', 'SCSS', 'JavaScript', 'jQuery', 'PHP', 'Python', 'MySQL', 'Magento 2', 'RWD'];
-$toolSkills = ['Git', 'Docker', 'Postman', 'Jira', 'Confluence', 'Figma', 'BPMN', 'UML'];
-$softSkills = ['Komunikatywność', 'Samodzielność', 'Dobra organizacja pracy', 'Praca zespołowa', 'Analityczne myślenie'];
-$languages = ['Angielski - komunikatywny'];
+$techSkills = ['IT Support L1/L2', 'Incident Management', 'Business Analysis', 'Process Automation', 'Root Cause Analysis', 'Python Automation', 'BPMN', 'UML', 'PHP', 'MySQL'];
+$toolSkills = ['Jira', 'Confluence', 'Microsoft Entra ID', 'Git', 'GitLab CI/CD', 'Docker', 'Microsoft 365', 'Active Directory', 'SCCM', 'Figma'];
+$softSkills = ['Asertywność', 'Komunikacja', 'Praca zespołowa', 'Analityczne myślenie', 'Organizacja', 'Samodyscyplina'];
+$languages = ['Angielski - B2', 'Hiszpański - A1', 'Rosyjski - A1', 'Niemiecki - początkujący'];
 $focusItems = [
-    'Frontend z naciskiem na przejrzysty HTML, CSS i JavaScript.',
-    'Podstawy backendu: PHP, Python, MySQL i praca z Magento 2.',
-    'Swoboda w narzędziach zespołowych: Git, Jira, Docker, Postman.',
+    'IT operations i wsparcie L1/L2 z naciskiem na stabilne procesy i standardy.',
+    'Analiza biznesowa, BPMN/UML i praca z interesariuszami w środowisku Agile/Scrum.',
+    'Automatyzacja procesów w Pythonie i PowerShellu oraz integracje systemów enterprise.',
 ];
 $nowItems = [
-    'Najbardziej interesują mnie projekty webowe, w których mogę łączyć frontend z PHP i bazami danych.',
-    'Szukam zadań, które wymagają myślenia o użytkowniku, czytelnym kodzie i praktycznym dowożeniu zmian.',
-    'Chcę rozwijać się bliżej zespołów produktowych, gdzie analiza wymagań szybko przechodzi w działający interfejs.',
+    'Najbardziej interesują mnie role łączące IT operations, analizę biznesową i automatyzację procesów.',
+    'Szukam zadań, w których wymagania biznesowe szybko przechodzą w stabilne procesy, integracje lub narzędzia.',
+    'Chcę rozwijać rozwiązania, które redukują pracę manualną i poprawiają jakość decyzji operacyjnych.',
 ];
 
 $projects = [
@@ -71,75 +71,96 @@ $projects = [
 $jobs = [
     [
         'role' => 'Specjalista IT',
-        'company' => 'Orlen Trading Switzerland',
+        'company' => 'Orlen Trading Switzerland GmbH, Baar',
         'period' => '10.2025 - obecnie',
         'items' => [
-            'Utrzymanie systemów, sieci i środowiska firmowego z naciskiem na stabilność oraz bezpieczeństwo.',
-            'Diagnozowanie problemów IT i wdrażanie praktycznych usprawnień dla użytkowników.',
+            'Budowanie lokalnych operacji IT, procesów i standardów technicznych dla nowo utworzonego szwajcarskiego oddziału w zgodzie z politykami IT i cyberbezpieczeństwa grupy.',
+            'Projektowanie i wdrażanie procesów operacyjnych IT, w tym onboardingu i offboardingu pracowników, cyklu życia sprzętu, przygotowania stacji roboczych i administracji lokalną stroną.',
+            'Tworzenie automatyzacji w Pythonie i PowerShellu, w tym przepływów przetwarzania danych oraz zadań zarządzania endpointami przez Microsoft Configuration Manager.',
+            'Koordynacja integracji platformy Amphora z tenantem Microsoft ORLEN we współpracy z zespołami korporacyjnymi i zewnętrznymi dostawcami.',
+            'Wsparcie L1/L2, administracja Microsoft 365, Active Directory i Microsoft Entra ID oraz koordynacja rozwiązywania złożonych problemów technicznych.',
+            'Zarządzanie lokalnymi wydatkami operacyjnymi IT, planowanie zakupów technologicznych i kontrola zgodności z budżetem.',
         ],
-        'tech' => ['Git', 'Postman', 'Docker'],
+        'tech' => ['IT Support L1/L2', 'Python Automation', 'Microsoft 365', 'Active Directory', 'SCCM'],
     ],
     [
-        'role' => 'Specjalista ds. kontroli biznesowej IT',
-        'company' => 'Orlen S.A.',
-        'period' => '12.2023 - 09.2025',
+        'role' => 'Młodszy specjalista ds. kontrolingu biznesowego IT',
+        'company' => 'Orlen S.A., Warszawa',
+        'period' => '12.2023 - 10.2025',
         'items' => [
-            'Praca z budżetami IT, analizą danych i rekomendacjami dla projektów technologicznych.',
-            'Łączenie perspektywy technicznej z biznesową w środowisku dużej organizacji.',
+            'Monitorowanie wyników finansowych departamentów IT i portfeli projektów przekraczających 1 mld PLN, w tym analiza wykonania budżetu, prognoz, odchyleń od planu i celów MBO.',
+            'Przygotowywanie raportów zarządczych, prognoz i dashboardów wspierających decyzje strategiczne dla około 300 projektów IT rocznie.',
+            'Współpraca z kierownikami projektów i interesariuszami biznesowymi przy analizie KPI projektów, budżetów i alokacji zasobów.',
         ],
-        'tech' => ['Jira', 'Confluence', 'BPMN'],
+        'tech' => ['Business Analysis', 'Microsoft Excel', 'Microsoft 365', 'Stakeholder Management'],
     ],
     [
         'role' => 'Konsultant ds. analizy biznesowo-systemowej / PM',
-        'company' => 'SkyCash Poland',
+        'company' => 'SkyCash Poland, Warszawa / Łódź',
         'period' => '09.2022 - 11.2023',
         'items' => [
-            'Analiza wymagań, diagramy BPMN i opisy procesów dla systemów miejskich oraz parkingowych.',
-            'Przekładanie potrzeb biznesu na konkretne zadania dla zespołów technicznych.',
+            'Udział w analizach biznesowych wspierających decyzje strategiczne i operacyjne w projekcie B+R RPLD.01.02.02-10-0080/21 dotyczącym autonomicznego środowiska AI dla parkingu miejskiego.',
+            'Modelowanie procesów biznesowych w BPMN i UML oraz przygotowywanie specyfikacji funkcjonalnych dla zespołów developerskich.',
+            'Tworzenie wireframeów i makiet UI w Figmie na potrzeby projektowania produktu i warsztatów z interesariuszami.',
+            'Współpraca z developerami, testerami i product ownerami w środowisku Agile/Scrum z użyciem Jira i Confluence.',
         ],
         'tech' => ['Jira', 'Confluence', 'BPMN', 'UML'],
     ],
     [
-        'role' => 'Backend developer',
-        'company' => 'Wirtualna Polska',
+        'role' => 'Backend developer B2B',
+        'company' => 'Wirtualna Polska, Warszawa',
         'period' => '03.2022 - 04.2024',
         'items' => [
-            'Współtworzenie architektury backendowej dla serwisów o dużym natężeniu ruchu.',
-            'Implementacja, testowanie i dokumentowanie zmian w logice kodu.',
+            'Rozwój i utrzymanie rozwiązań backendowych w PHP, MySQL i Dockerze dla platform webowych o dużym ruchu.',
+            'Implementacja nowych funkcji, rozwiązywanie problemów produkcyjnych i udział w code review z użyciem GitLab.',
+            'Współpraca z frontend developerami, QA i product ownerami w środowisku Agile/Scrum.',
         ],
         'tech' => ['PHP', 'Python', 'MySQL', 'Git'],
     ],
     [
         'role' => 'Fullstack developer',
-        'company' => 'Hotchili Digital',
+        'company' => 'Hotchili Digital, Warszawa',
         'period' => '04.2020 - 04.2022',
         'items' => [
-            'Praca z frontendem, backendem i UX/UI przy projektach wdrożeniowych.',
-            'Projektowanie, implementacja i testowanie zmian w aplikacjach webowych.',
+            'Tworzenie responsywnych stron internetowych i szablonów e-mail w HTML5, CSS3, SCSS, JavaScript i jQuery.',
+            'Wdrażanie projektów z Adobe XD do kodu gotowego do produkcji.',
+            'Współpraca z projektantami UX/UI i backend developerami z użyciem Git oraz metodyk Agile.',
         ],
         'tech' => ['HTML5', 'CSS3', 'JavaScript', 'PHP', 'Magento 2'],
     ],
     [
-        'role' => 'Stażysta / specjalista elektronik',
-        'company' => 'Blinkee.city',
-        'period' => '08.2017 - 08.2019',
+        'role' => 'Tester manualny',
+        'company' => 'Millennium, Warszawa',
+        'period' => '09.2019 - 03.2020',
         'items' => [
-            'Projektowanie funkcjonalności elektronicznych dla pojazdów EV.',
-            'Dokumentacja techniczno-użytkowa i wsparcie rozwiązań dla bezpieczeństwa użytkownika.',
+            'Projektowanie i wykonywanie manualnych scenariuszy testów funkcjonalnych, end-to-end i regresyjnych.',
+            'Zgłaszanie i śledzenie defektów w Jira we współpracy z zespołami developerskimi.',
+            'Weryfikacja wydań oprogramowania w systemach bankowości korporacyjnej i udział w walidacji produkcyjnej.',
+        ],
+        'tech' => ['Jira', 'Manual Testing', 'Business Analysis'],
+    ],
+    [
+        'role' => 'Stażysta / specjalista elektronik',
+        'company' => 'Blinkee.city, Warszawa',
+        'period' => '07.2017 - 08.2019',
+        'items' => [
+            'Projektowanie funkcjonalności elektronicznych dla pojazdów elektrycznych EV.',
+            'Rozwój elektronicznych funkcji bezpieczeństwa, rysunków technicznych i procedur bezpieczeństwa dla urządzeń transportu osobistego.',
+            'Prowadzenie prac B+R nad nowymi rozwiązaniami wraz z pełną dokumentacją techniczną i użytkową.',
         ],
         'tech' => ['UML', 'Figma'],
     ],
 ];
 
 $education = [
-    ['degree' => 'Filozofia', 'school' => 'Uniwersytet Warszawski', 'period' => 'October 2019 - Jul 2022'],
-    ['degree' => 'Licencjat', 'school' => 'Akademia Sztuki Wojennej', 'period' => 'October 2016 - Jul 2019'],
-    ['degree' => 'Lotnictwo i kosmonautyka', 'school' => 'Wojskowa Akademia Techniczna', 'period' => 'October 2015 - Jul 2016'],
+    ['degree' => 'Filozofia, studia magisterskie - ukończony tok studiów', 'school' => 'Uniwersytet Warszawski', 'period' => '10.2019 - 06.2022'],
+    ['degree' => 'Zarządzanie lotnictwem, licencjat', 'school' => 'Akademia Sztuki Wojennej', 'period' => '10.2016 - 06.2019'],
+    ['degree' => 'Lotnictwo i kosmonautyka', 'school' => 'Wojskowa Akademia Techniczna', 'period' => '10.2014 - 06.2017'],
 ];
 
 $downloadPaths = [
     'pl' => is_file(__DIR__ . '/assets/downloads/K.Romsicki_cv_pl.pdf') ? 'assets/downloads/K.Romsicki_cv_pl.pdf' : null,
-    'en' => is_file(__DIR__ . '/assets/downloads/K.Romsicki_cv_EN_1.pdf') ? 'assets/downloads/K.Romsicki_cv_EN_1.pdf' : null,
+    'en' => is_file(__DIR__ . '/assets/downloads/K.Romsicki_cv_EN.pdf') ? 'assets/downloads/K.Romsicki_cv_EN.pdf' : null,
 ];
 $downloadPath = $downloadPaths['pl'] ?? $downloadPaths['en'];
 $downloadPathEn = $downloadPaths['en'] ?? $downloadPath;
